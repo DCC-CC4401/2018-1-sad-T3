@@ -19,3 +19,6 @@ class Action(models.Model):
     starting_date_time = models.DateTimeField()
     ending_date_time = models.DateTimeField()
     state = models.CharField('Estado', choices=STATES, max_length=1, default='P')
+
+    class Meta:
+        abstract = True
