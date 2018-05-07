@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'mainApp.apps.MainappConfig',
     'articlesApp.apps.ArticlesappConfig',
     'spacesApp.apps.SpacesappConfig',
+    'bootstrap4'
 ]
 
 MIDDLEWARE = [
@@ -84,6 +85,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'mainApp.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
