@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'mainApp.apps.MainappConfig',
     'articlesApp.apps.ArticlesappConfig',
     'spacesApp.apps.SpacesappConfig',
-    'bootstrap4'
+    'reservationsApp.apps.ReservationsappConfig',
+    'loansApp.apps.LoansappConfig',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
