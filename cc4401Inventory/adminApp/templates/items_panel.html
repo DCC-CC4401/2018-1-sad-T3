@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load bootstrap4 %}
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<title>Bienvenido!</title>
+</head>
+<body>
+<div class="content">
+<div class="row">
+  {% include '_sidebar.html' %}
+	<div class="col-md-10">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <form>
+          <input type="text" placeholder="Ingrese su busqueda">
+          <input type="submit" value="Buscar">
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 offset-md-1">
+        <h1>Articulos</h1>
+        <table>
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre del Articulo</th>
+            <th>Estado</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>ID</td>
+            <td>Nombre del Articulo</td>
+            <td>Estado</td>
+            <td></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-4 offset-md-1">
+        <h1>Espacios</h1>
+        <table>
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre del Espacio</th>
+            <th>Estado</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>ID</td>
+            <td>Nombre del Espacio</td>
+            <td>Estado</td>
+            <td></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
