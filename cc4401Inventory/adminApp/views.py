@@ -7,3 +7,7 @@ def user_panel(request):
 
 def items_panel(request):
     return render(request, 'items_panel.html')
+
+
+def actions_panel(request):
+    return render(request, 'actions_panel.html')
