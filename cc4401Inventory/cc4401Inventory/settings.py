@@ -60,7 +60,7 @@ ROOT_URLCONF = 'cc4401Inventory.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'adminApp/templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {

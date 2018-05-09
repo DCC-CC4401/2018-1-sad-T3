@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load bootstrap4 %}
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<title>Bienvenido!</title>
+</head>
+<body>
+<div class="content">
+<div class="row">
+  {% include '_sidebar.html' %}
+	<div class="col-md-10">
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Rut</th>
+        <th>Correo</th>
+        <th>Estado</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>ID</td>
+        <td>Nombre</td>
+        <td>Apellido</td>
+        <td>Rut</td>
+        <td>Correo</td>
+        <td>Estado</td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+	</div>
+</div>
+</div>
+</body>
+</html>
