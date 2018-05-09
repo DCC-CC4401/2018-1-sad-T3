@@ -50,7 +50,8 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
-
+#otros
+__pycache__/
 .DS_Store
 .idea/
 venv/
