@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+
+<div class = "container">
+  <div class="row">
+    <div class="col-md-7">
+      <h1> Nombre artículo </h1>
+      <img src= " {% static "articlesApp/mesa.jpeg" %}" class="img-fluid" alt="Foto" />
+      <p> Lorem ipsum blablbalbalblablab dolor kasjkdjasdkfsaf asdsadafasd asdiv xcjsad
+      asdad askfjaskd faskjd sda sdas fasvjxpg mdkcvjx sdaskjd </p>
+    </div>
+
+    <div class = "col-md-5">
+      <h3>Solicitar reserva</h3>
+      <form>
+        <div class = "row">
+          <label>Fecha: </label> <input type = "date" name = "desde" />
+        </div>
+        <div class = "row">
+          <label>Hora: </label> <input type = "time" name = "asdad" />
+        </div>
+        <button class = "btn btn-primary" align = "right"> Pedir </button>
+      </form>
+        <div class = "row">
+          <h3> Historial de reservas</h3>
+          <div class = "table-responsive">
+            <table class = "table">
+              <thead>
+                <th>articulo</th>
+                <th>fecha inicio</th>
+                <th>fecha fin</th>
+              </thead>
+              <tbody>
+               <tr>
+                 <th>microfono</th>
+                 <th>03/03/2003</th>
+                 <th>03/04/2003</th>
+                </tr>
+               <tr>
+                 <th>microfono</th>
+                 <th>03/03/2003</th>
+                 <th>03/04/2003</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+
+</body>
+</html>
