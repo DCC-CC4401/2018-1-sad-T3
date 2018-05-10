@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load bootstrap4 %}
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<title>Bienvenido!</title>
+</head>
+<body>
+<div class="container">
+<div class="row">
+  {% include '_sidebar.html' %}
+	<div class="col-md-10">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h1>LA MALDITA GRILAAAAAAAAAAAAAAAA</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h1>Pendientes</h1>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre del Espacio</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Fecha de Prestamo</th>
+            <th scope="col">Fecha de Solicitud</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>ID</td>
+            <td>Nombre del Espacio</td>
+            <td>Usuario</td>
+            <td>Fecha de Prestamo</td>
+            <td>Fecha de Solicitud</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <h1>Pedidos</h1>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre del Espacio</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Fecha de Prestamo</th>
+            <th scope="col">Fecha de Solicitud</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>ID</td>
+            <td>Nombre del Espacio</td>
+            <td>Usuario</td>
+            <td>Fecha de Prestamo</td>
+            <td>Fecha de Solicitud</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
