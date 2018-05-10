@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'spacesApp.apps.SpacesappConfig',
     'reservationsApp.apps.ReservationsappConfig',
     'loansApp.apps.LoansappConfig',
+    'adminApp.apps.AdminappConfig',
+    'usersApp.apps.UsersappConfig',
     'bootstrap4',
 ]
 
@@ -60,7 +62,7 @@ ROOT_URLCONF = 'cc4401Inventory.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'adminApp/templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
