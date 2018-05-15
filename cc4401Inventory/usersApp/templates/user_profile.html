@@ -35,12 +35,11 @@
 
     <div class="row">
         <br>
-        <!-- Nav pills -->
+        <!-- Nav pills Reservas y Préstamos-->
         <div class="col-xl-6 text-xs-center">
             <ul class="nav nav-pills" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="pill" href="#reservas"
-                       style="border: ActiveBorder">Reservas</a>
+                    <a class="nav-link active" data-toggle="pill" href="#reservas">Reservas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="pill" href="#prestamos">Préstamos</a>
@@ -54,13 +53,58 @@
             </button>
         </div>
 
-
-        <!-- Tab panes -->
+        <!-- Contenido de las Reservas y Préstamos-->
         <div class="tab-content">
 
             <div id="reservas" class="container tab-pane active"><br>
                 <h3>Reservas</h3>
-                <p>No se han realizado reservas</p>
+
+                <div class="row">
+
+                    <div class="col-lg-3">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                             aria-orientation="vertical">
+                            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                               role="tab"
+                               aria-controls="v-pills-home" aria-selected="true">
+                                Parlante <span class="badge badge-pill badge-light">En proceso</span></a>
+                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+                               role="tab"
+                               aria-controls="v-pills-profile" aria-selected="false">
+                                Quincho <span class="badge badge-pill badge-light">Aceptado</span></a>
+                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
+                               role="tab"
+                               aria-controls="v-pills-messages" aria-selected="false">
+                                Sala 1 <span class="badge badge-pill badge-light">Rechazado</span></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-9">
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <div class="tab-content" id="v-pills-tabContent">
+                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                                         aria-labelledby="v-pills-home-tab">
+                                        <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+                                        Descripción Parlantes
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                                         aria-labelledby="v-pills-profile-tab">
+                                        <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+                                        Descripción Quincho
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                                         aria-labelledby="v-pills-messages-tab">
+                                        <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+                                        Descripción Sala 1
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
             <div id="prestamos" class="container tab-pane fade"><br>
                 <h3>Préstamos</h3>
