@@ -10,28 +10,9 @@
 </head>
 <body>
 
-{% load bootstrap4 %}
-{% bootstrap_css %}
-
-{% include '_navbar.html' %}
-
-<p></p>
+{% include '_header_user_profile.html' %}
 
 <div class="container">
-
-    <!--Botones de reservar espacio y pedir artículos-->
-    <div class="row">
-        <div class="col-xl-6 text-xs-center">
-            <div class="card mb-3">
-                <button type="button" class="btn btn-light btn-lg btn-block">Reserva tu espacio</button>
-            </div>
-        </div>
-        <div class="col-xl-6 text-xs-center">
-            <div class="card mb-3">
-                <button type="button" class="btn btn-light btn-lg btn-block">Pide tu artículo</button>
-            </div>
-        </div>
-    </div>
 
     <div class="row">
         <br>
@@ -57,7 +38,6 @@
         <div class="tab-content">
 
             <div id="reservas" class="container tab-pane active"><br>
-                <h3>Reservas</h3>
 
                 <div class="row">
 
@@ -107,7 +87,6 @@
 
             </div>
             <div id="prestamos" class="container tab-pane fade"><br>
-                <h3>Préstamos</h3>
                 <p>No se han realizado préstamos</p>
             </div>
         </div>
