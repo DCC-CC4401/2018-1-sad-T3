@@ -2,6 +2,6 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def landing_user(request):
-
-    return render(request, 'usersApp/landing_user.html')
+def index(request):
+    context = {}
+    return render(request, 'user_profile.html', context)
