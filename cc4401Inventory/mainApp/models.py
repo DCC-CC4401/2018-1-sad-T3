@@ -43,9 +43,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(_('Fecha de Registro'), auto_now_add=True)
     is_active = models.BooleanField(_('Activo'), default=True)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
-    enabled = models.BooleanField('Habilitado')
-    rut = models.CharField('RUT', max_length=12)
+    enabled = models.BooleanField('Habilitado', default=True)
+    rut = models.CharField('RUT', max_length=12, unique=True, null=True)
     role = models.IntegerField('Tipo', default=0)
+    is_staff = models.BooleanField(_('staff status'), default=False)
 
     objects = UserManager()
 
