@@ -1,12 +1,21 @@
+{% extends 'application_layout.html' %}
+
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Perfil de usuario</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css"
-          integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    {% block title %}
+    Perfil de usuario
+    {% endblock %}
+
+{#    No recuerdo por qué lo tenía#}
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>#}
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>#}
+</head>
+
+{% block body %}
+<body>
+
+{#    Estilo para la línea de tiempo, no sé en qué parte debería ir#}
     <style>
         /* The actual timeline (the vertical ruler) */
         .timeline {
@@ -89,13 +98,6 @@
             }
         }
     </style>
-</head>
-<body>
-
-{% load bootstrap4 %}
-{% bootstrap_css %}
-
-{% include '_navbar.html' %}
 
 <div class="container">
 
@@ -251,4 +253,6 @@
 </div>
 
 </body>
-</html>
+
+{% endblock %}
+
