@@ -1,0 +1,81 @@
+{% extends 'application_layout.html' %}
+
+{% block title %}
+Artículos
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <br>
+    <div class="row" style="margin-bottom: 20px;">
+        <br>
+    <div class="col-4"></div>
+    <div class="col-4">
+
+        <div class="row">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="" class="btn btn-success btn-lg disabled" role="button" aria-disabled="true">Artículos</a>
+                <a href="{% url 'espacios' %}" class="btn btn-light btn-lg " role="button" aria-disabled="false">Espacios</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-4"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+        <form method="get" action="{% url 'buscar' %}">
+
+            <div class="row">
+                <div class="input-group mb-3" style="margin-bottom: 8px !important;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="background-color: #ffffff! important; border-right: 0px!important;" id="basic-addon1"><i class="fas fa-search"></i></span>
+                    </div>
+                    <input name="query" type="text" class="form-control" style="border-left: 0px!important" placeholder="Ingrese artículo a buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" id="searchbtn" type="submit">Buscar</button>
+
+                    </div>
+                </div>
+                <div class="row" style="width:80%;">
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
+                            </div>
+                            <select name="tipo" class="custom-select" id="inputGroupSelect01">
+                                <option selected value="">---</option>
+                                <option value="1">Tipo 1</option>
+                                <option value="2">Tipo 2</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect02">Estado</label>
+                            </div>
+                            <select name="estado" class="custom-select" id="inputGroupSelect02">
+                                <option selected value="">---</option>
+                                <option value="1">Disponible</option>
+                                <option value="2">En Reparaciones</option>
+                                <option value="3">Perdido</option>
+                                <option value="4">No Disponible</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+        <div class="col-2"></div>
+
+
+    </div>
+</div>
+
+{% endblock %}
+
