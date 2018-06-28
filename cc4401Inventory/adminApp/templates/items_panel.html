@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	{% load bootstrap4 %}
-	{% bootstrap_css %}
-	{% bootstrap_javascript %}
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
-	<meta charset="UTF-8">
-	<title>Bienvenido!</title>
-</head>
-<body>
+{% extends 'application_layout.html' %}
+
+{% block title %}
+  Bienvenido!
+{% endblock %}
+
+{% block body %}
 <div class="container">
 <div class="row">
   {% include '_sidebar.html' %}
@@ -68,5 +64,4 @@
   </div>
 </div>
 </div>
-</body>
-</html>
+{% endblock %}
