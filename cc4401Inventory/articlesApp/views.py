@@ -5,4 +5,4 @@ from django.shortcuts import render, redirect
 def index(request):
     #items = Item.objects.all()
     #context = {'items': items}
-    return render(request, 'articlesApp.html')
+    return render(request, 'login.html')
