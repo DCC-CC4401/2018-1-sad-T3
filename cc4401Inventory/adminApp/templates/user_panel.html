@@ -22,15 +22,23 @@
       </tr>
       </thead>
       <tbody>
+      {% for user in users %}
       <tr>
-        <td>ID</td>
-        <td>Nombre</td>
-        <td>Apellido</td>
-        <td>Rut</td>
-        <td>Correo</td>
-        <td>Estado</td>
+        <td>{{ user.id }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.rut }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          {% if user.enabled %}
+          Habilitado
+          {% else %}
+          No Habilitado
+          {% endif %}
+        </td>
         <td></td>
       </tr>
+      {% endfor %}
       </tbody>
     </table>
 	</div>
