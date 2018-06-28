@@ -30,12 +30,17 @@
           </tr>
           </thead>
           <tbody>
+          {% for article in articles %}
           <tr>
-            <td>ID</td>
-            <td>Nombre del Articulo</td>
-            <td>Estado</td>
-            <td>Botoncitos</td>
+            <td>{{ article.id }}</td>
+            <td>{{ article.name }}</td>
+            <td>{{ article.state }}</td>
+            <td>
+              <button><i class="fas fa-edit"></i></button>
+              <button><i class="fas fa-trash"></i></button>
+            </td>
           </tr>
+          {% endfor %}
           </tbody>
         </table>
       </div>
@@ -51,12 +56,17 @@
           </tr>
           </thead>
           <tbody>
+          {% for space in spaces %}
           <tr>
-            <td>ID</td>
-            <td>Nombre del Espacio</td>
-            <td>Estado</td>
-            <td>Botoncitos</td>
+            <td>{{ space.id }}</td>
+            <td>{{ space.name }}</td>
+            <td>{{ space.state }}</td>
+            <td>
+              <button><i class="fas fa-edit"></i></button>
+              <button><i class="fas fa-trash"></i></button>
+            </td>
           </tr>
+          {% endfor %}
           </tbody>
         </table>
       </div>
