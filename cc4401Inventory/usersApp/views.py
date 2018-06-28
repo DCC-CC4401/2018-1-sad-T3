@@ -11,3 +11,8 @@ def login(request):
 
 def create_account(request):
     return render(request, 'usersApp/create_account.html')
+
+def index(request):
+    context = {}
+    return render(request, 'user_profile.html', context)
+

@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-{% load static %}
-{% load bootstrap4 %}
-{% bootstrap_css %}
+{% extends 'application_layout.html' %}
 
+{% load static %}
+
+{% block title %}
+  Artículos
+{% endblock %}
+
+{% block body %}
 <div class = "container">
   <div class="row">
     <div class="col-md-7">
@@ -56,7 +55,4 @@
 
   </div>
 </div>
-
-
-</body>
-</html>
+{% endblock %}
