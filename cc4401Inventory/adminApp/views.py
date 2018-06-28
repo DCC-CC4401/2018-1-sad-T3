@@ -3,10 +3,15 @@ from reservationsApp.models import Reservation
 from loansApp.models import Loan
 from articlesApp.models import Article
 from spacesApp.models import Space
+from mainApp.models import User
 
 
 def user_panel(request):
-    return render(request, 'user_panel.html')
+    users = User.objects.all()
+    context = {
+        'users': users
+    }
+    return render(request, 'user_panel.html', context)
 
 
 def items_panel(request):
