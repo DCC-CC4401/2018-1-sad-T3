@@ -29,10 +29,10 @@
           <tbody>
           {% for reservation in reservations %}
           <tr>
-            <td>reservation.id</td>
-            <td>reservation.name</td>
-            <td>reservation.user.name</td>
-            <td>reservation.starting_date_time</td>
+            <td>{{ reservation.id }}</td>
+            <td>{{ reservation.space.name }}</td>
+            <td>{{ reservation.user.get_full_name }}</td>
+            <td>{{ reservation.starting_date_time }}</td>
           </tr>
           {% endfor %}
           </tbody>
@@ -52,10 +52,10 @@
           <tbody>
           {% for loan in loans %}
           <tr>
-            <td>loan.id</td>
-            <td>loan.name</td>
-            <td>loan.user.name</td>
-            <td>loan.starting_date_time</td>
+            <td>{{ loan.id }}</td>
+            <td>{{ loan.article.name }}</td>
+            <td>{{ loan.user.get_full_name }}</td>
+            <td>{{ loan.starting_date_time }}</td>
           </tr>
           {% endfor %}
           </tbody>

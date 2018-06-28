@@ -12,8 +12,8 @@ def items_panel(request):
 
 
 def actions_panel(request):
-    reservations = Reservation.objects.all
-    loans = Loan.objects.all
+    reservations = Reservation.objects.all()
+    loans = Loan.objects.all()
     context = {
         'reservations': reservations,
         'loans': loans
