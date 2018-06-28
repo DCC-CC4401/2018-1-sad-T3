@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:usersApp="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+{% load bootstrap4 %}
+{% bootstrap_css %}
+
+<body>
+
+    <div class="container">
+      <div class="row ">
+        <div class = "col-md-4 offset-md-4">
+          <form>
+            <div class="form-group">
+                <label for="inputEmail">Email</label>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="inputFirstName">Nombres</label>
+                <input type="text" class="form-control" id="inputFirstName" placeholder="Pedro Jesús">
+            </div>
+
+            <div class="form-group">
+              <label for="inputLastName">Apellidos</label>
+              <input type="text" class="form-control" id="inputLastName" placeholder="Perez González">
+            </div>
+
+
+            <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Crear cuenta</button>
+            <a href="login" style="float: right;">Volver</a>
+         </form>
+        </div>
+
+        </div>
+      </div>
+</body>
+</html>
