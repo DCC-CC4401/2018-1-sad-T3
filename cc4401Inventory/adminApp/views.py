@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from reservationsApp.models import Reservation
+from loansApp.models import Loan
 
 
 def user_panel(request):
@@ -10,4 +12,10 @@ def items_panel(request):
 
 
 def actions_panel(request):
-    return render(request, 'actions_panel.html')
+    reservations = Reservation.objects.all
+    loans = Loan.objects.all
+    context = {
+        'reservations': reservations,
+        'loans': loans
+    }
+    return render(request, 'actions_panel.html', context)

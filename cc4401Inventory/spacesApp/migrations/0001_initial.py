@@ -12,13 +12,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Article',
+            name='Space',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=40, verbose_name='Nombre')),
                 ('description', models.TextField(blank=True, verbose_name='Descripción')),
                 ('image', models.ImageField(blank=True, upload_to='images/items', verbose_name='Imagen del articulo')),
-                ('state', models.CharField(choices=[('D', 'Disponible'), ('P', 'En préstamo'), ('R', 'En reparación'), ('L', 'Perdido')], max_length=1)),
+                ('state', models.CharField(choices=[('D', 'Disponible'), ('P', 'En préstamo'), ('R', 'En reparación')], max_length=1)),
             ],
             options={
                 'abstract': False,
