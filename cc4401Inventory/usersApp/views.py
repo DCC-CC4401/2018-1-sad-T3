@@ -50,3 +50,14 @@ def buscar(request):
         # productos = "resultado de la cosita"
 
         return landing_search(request, productos)
+
+
+def get_spaces(request):
+
+    if request.method == "GET":
+
+        spaces = None
+        # TODO: REALIZAR BUSQUEDA DE LOS ESPACIOS
+
+
+        return Http

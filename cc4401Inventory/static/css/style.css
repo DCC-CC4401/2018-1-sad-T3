@@ -1,4 +1,4 @@
-/* -------------------------------- 
+/* --------------------------------
 
 Primary style
 
@@ -23,9 +23,9 @@ a {
   text-decoration: none;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main Components 
+Main Components
 
 -------------------------------- */
 .cd-schedule {
@@ -71,7 +71,7 @@ Main Components
   }
   .cd-schedule .timeline li {
     position: relative;
-    height: 50px;
+    height: 20px;
   }
   .cd-schedule .timeline li::after {
     /* this is used to create the table horizontal lines */
@@ -113,7 +113,7 @@ Main Components
 }
 
 .cd-schedule .events .events-group {
-  margin-bottom: 30px;
+  /*margin-bottom: 30px;*/
 }
 
 .cd-schedule .events .top-info {
@@ -170,7 +170,8 @@ Main Components
 .cd-schedule .events .single-event a {
   display: block;
   height: 100%;
-  padding: .8em;
+  padding: .4em;
+  padding-left: .6em;
 }
 
 @media only screen and (min-width: 550px) {
@@ -213,7 +214,7 @@ Main Components
     margin-bottom: 0;
   }
   .cd-schedule .events .events-group > ul {
-    height: 950px;
+    height: 358px;
     /* reset style */
     display: block;
     overflow: visible;
@@ -234,7 +235,7 @@ Main Components
     /* top position and height will be set using js */
     width: calc(100% + 2px);
     left: -1px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), inset 0 -3px 0 rgba(0, 0, 0, 0.2);
+    /*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), inset 0 -3px 0 rgba(0, 0, 0, 0.2);*/
     /* reset style */
     -ms-flex-negative: 1;
         flex-shrink: 1;
@@ -243,7 +244,7 @@ Main Components
     margin-right: 0;
   }
   .cd-schedule .events .single-event a {
-    padding: 1.2em;
+    /*padding-left: 1.2em;*/
   }
   .cd-schedule .events .single-event:last-of-type {
     /* reset style */
@@ -284,16 +285,16 @@ Main Components
 
 @media only screen and (min-width: 800px) {
   .cd-schedule .event-name {
-    font-size: 2rem;
+    font-size: 1rem;
   }
 }
 
 .cd-schedule .event-date {
   /* they are not included in the the HTML but added using JavScript */
-  font-size: 1.4rem;
+  font-size: 0.8rem;
   opacity: .7;
   line-height: 1.2;
-  margin-bottom: .2em;
+  /*margin-bottom: .2em;*/
 }
 
 .cd-schedule .single-event[data-event="event-1"],

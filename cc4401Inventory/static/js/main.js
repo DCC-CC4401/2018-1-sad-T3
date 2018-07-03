@@ -19,7 +19,7 @@ jQuery(document).ready(function($){
 		this.eventsGroup = this.eventsWrapper.find('.events-group');
 		this.singleEvents = this.eventsGroup.find('.single-event');
 		this.eventSlotHeight = this.eventsGroup.eq(0).children('.top-info').outerHeight();
-
+		console.log(this.eventSlotHeight)
 		this.modal = this.element.find('.event-modal');
 		this.modalHeader = this.modal.find('.header');
 		this.modalHeaderBg = this.modal.find('.header-bg');
@@ -93,8 +93,8 @@ jQuery(document).ready(function($){
 			var start = getScheduleTimestamp($(this).attr('data-start')),
 				duration = getScheduleTimestamp($(this).attr('data-end')) - start;
 
-			var eventTop = self.eventSlotHeight*(start - self.timelineStart)/self.timelineUnitDuration,
-				eventHeight = self.eventSlotHeight*duration/self.timelineUnitDuration;
+			var eventTop = self.eventSlotHeight*(start - self.timelineStart)/self.timelineUnitDuration*(20/50.0),
+				eventHeight = self.eventSlotHeight*duration/self.timelineUnitDuration*(20/50.0);
 
 			$(this).css({
 				top: (eventTop -1) +'px',
