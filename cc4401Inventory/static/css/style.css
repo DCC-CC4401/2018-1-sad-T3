@@ -7,18 +7,18 @@ Primary style
   box-sizing: border-box;
 }
 
-html {
+html .cd-schedule{
   font-size: 62.5%;
 }
 
-body {
+body .cd-schedule{
   font-size: 1.6rem;
   font-family: "Source Sans Pro", sans-serif;
   color: #222222;
   background-color: white;
 }
 
-a {
+a .cd-schedule{
   color: #A2B9B2;
   text-decoration: none;
 }
