@@ -79,8 +79,12 @@ jQuery(document).ready(function($){
 		/* Para dibujar la linea de horario:
 		 */
 		var now = new Date();
-		hh = now.getHours();
-		mm = now.getMinutes();
+		var hh = now.getHours();
+		var mm = now.getMinutes();
+		var mm_fixed = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09"]
+		mm = (mm < 10) ? mm_fixed[mm] : mm;
+
+
 		var time_now = getScheduleTimestamp(hh+":"+mm);
 		var dias = {'1': 'Lunes',
 					'2': 'Martes',
@@ -92,11 +96,14 @@ jQuery(document).ready(function($){
 		var time_now_top = self.eventSlotHeight*(time_now - self.timelineStart)/self.timelineUnitDuration*(20/50.0) + 50;
 
 		if(hh>= 9 && hh < 18){
+			hh = (mm < 10) ? mm_fixed[hh] : hh;
 			var line = document.getElementById("line");
-			line.style.top = time_now_top+"px";
-			line.style.width = (document.getElementById("line").parentElement.offsetWidth)+"px";
+			//line.style.top = time_now_top+"px";
+			document.getElementById("line-container").style.top = time_now_top+"px"
+			line.style.width = (document.getElementById("events").offsetWidth+5)+"px";
 			var msg = document.getElementById("message");
 			msg.innerHTML =  "<i class=\"fas fa-caret-down\"></i> " + hh+":"+mm+", "+dias[now.getDay()];
+			msg.style.left = document.getElementById("timeline").offsetWidth+"px";
 
 		} else {
 			document.getElementById("line").outerHTML = "";
