@@ -8,18 +8,25 @@ Espacios
 
 <div class="container">
     <br>
-    <div class="row" style="margin-bottom: 20px;">
+    <div class="row">
         <div class="col-4"></div>
-        <div class="col-4">
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <a href="{% url 'articulos' %}" class="btn btn-light btn-lg" role="button" aria-disabled="false">Artículos</a>
-                <a href="" class="btn btn-success btn-lg disabled" role="button" aria-disabled="true">Espacios</a>
+        <div class="col-4" style="text-align: center;">
+            <div style="margin:0; padding:0; width: auto;" class="btn-group" role="group" aria-label="Basic example">
+                <a href="{% url 'articulos' %}"  class="btn btn-light" role="button" aria-disabled="false">Artículos</a>
+                <a href="" class="btn btn-success disabled" role="button" aria-disabled="true">Espacios</a>
             </div>
         </div>
+        <div class="col-4"></div>
     </div>
-    <div class="col-4"></div>
+
+{% include '_schedule.html' %}
+
+
+
 </div>
 
 
 
 {% endblock %}
+
+

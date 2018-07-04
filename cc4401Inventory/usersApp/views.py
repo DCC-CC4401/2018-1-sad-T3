@@ -50,3 +50,8 @@ def buscar(request):
         # productos = "resultado de la cosita"
 
         return landing_search(request, productos)
+
+
+def get_spaces(request):
+
+        return landing_espacios(request)
