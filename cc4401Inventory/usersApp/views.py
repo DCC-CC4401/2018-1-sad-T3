@@ -54,10 +54,4 @@ def buscar(request):
 
 def get_spaces(request):
 
-    if request.method == "GET":
-
-        spaces = None
-        # TODO: REALIZAR BUSQUEDA DE LOS ESPACIOS
-
-
-        return Http
+        return landing_espacios(request)

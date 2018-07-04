@@ -4,7 +4,7 @@
 {% load static %}
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
 	<link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
@@ -15,7 +15,7 @@
 
 <body>
 <div class="cd-schedule loading">
-	<div class="timeline">
+	<div class="timeline" id="timeline">
 		<ul>
 			<li><span>09:00</span></li>
 			<li><span>09:30</span></li>
@@ -38,11 +38,11 @@
 			<li><span>18:00</span></li>
 		</ul>
 	</div> <!-- .timeline -->
-
-	<div class="events">
+	<div id="line" class="clock"><div class="message" id="message"></div></div>
+	<div class="events" id="events">
 		<ul>
 			<li class="events-group">
-				<div class="top-info"><span>Monday</span></div>
+				<div class="top-info"><span>Lunes</span></div>
 
 				<ul>
 					<li class="single-event" data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1">
@@ -57,7 +57,7 @@
 			</li>
 
 			<li class="events-group">
-				<div class="top-info"><span>Tuesday</span></div>
+				<div class="top-info"><span>Martes</span></div>
 
 				<ul>
 
@@ -70,7 +70,7 @@
 			</li>
 
 			<li class="events-group">
-				<div class="top-info"><span>Wednesday</span></div>
+				<div class="top-info"><span>Miércoles</span></div>
 
 				<ul>
 					<li class="single-event" data-start="09:00" data-end="10:15" data-content="event-restorative-yoga" data-event="event-4">
@@ -100,7 +100,7 @@
 			</li>
 
 			<li class="events-group">
-				<div class="top-info"><span>Thursday</span></div>
+				<div class="top-info"><span>Jueves</span></div>
 
 				<ul>
 					<li class="single-event" data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1">
@@ -130,7 +130,7 @@
 			</li>
 
 			<li class="events-group">
-				<div class="top-info"><span>Friday</span></div>
+				<div class="top-info"><span>Viernes</span></div>
 
 				<ul>
 					<li class="single-event" data-start="10:00" data-end="11:00"  data-content="event-rowing-workout" data-event="event-2">
@@ -153,7 +153,31 @@
 				</ul>
 			</li>
 		</ul>
+
 	</div>
+
+
+
+	<div class="week-select" id="week-select">
+		<div style="text-align: center; margin-right: auto; margin-left: auto; width: 200px;">
+			<form action="" method="get" class="selectform">
+				<a href="" role="button"><i class="fas fa-angle-double-left"></i></a>
+			</form>
+			<form action="" method="get" class="selectform">
+				<a href="" role="button"><i class="fas fa-angle-left"></i></a>
+			</form>
+			<form action="" method="get" class="selectform">
+				<a href="" role="button"><i class="fas fa-angle-right"></i></a>
+			</form>
+			<form action="" method="get" class="selectform">
+				<a href="" role="button"><i class="fas fa-angle-double-right"></i></a>
+			</form>
+		</div>
+
+	</div>
+
+
+
 
 	<div class="event-modal">
 		<header class="header">

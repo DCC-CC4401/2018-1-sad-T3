@@ -76,6 +76,43 @@ jQuery(document).ready(function($){
 			});
 		});
 
+		/* Para dibujar la linea de horario:
+		 */
+		var now = new Date();
+		hh = now.getHours();
+		mm = now.getMinutes();
+		var time_now = getScheduleTimestamp(hh+":"+mm);
+		var dias = {'1': 'Lunes',
+					'2': 'Martes',
+					'3': 'Miércoles',
+					'4': 'Jueves',
+					'5': 'Viernes'
+		}
+		console.log(dias);
+		var time_now_top = self.eventSlotHeight*(time_now - self.timelineStart)/self.timelineUnitDuration*(20/50.0) + 50;
+
+		if(hh>= 9 && hh < 18){
+			var line = document.getElementById("line");
+			line.style.top = time_now_top+"px";
+			line.style.width = (document.getElementById("line").parentElement.offsetWidth)+"px";
+			var msg = document.getElementById("message");
+			msg.innerHTML =  "<i class=\"fas fa-caret-down\"></i> " + hh+":"+mm+", "+dias[now.getDay()];
+
+		} else {
+			document.getElementById("line").outerHTML = "";
+
+		}
+
+		/*Para dibujar los controles para moverse entre semanas
+
+		 */
+
+		var week_select = document.getElementById("week-select")
+		week_select.style.top = document.getElementById("timeline").offsetHeight+"px";
+		week_select.style.marginLeft = (document.getElementById("timeline").offsetWidth - document.getElementById("events").offsetWidth) +"px";
+		week_select.style.width = document.getElementById("events").offsetWidth + "px";
+
+
 		//close modal window
 		this.modal.on('click', '.close', function(event){
 			event.preventDefault();
@@ -96,10 +133,37 @@ jQuery(document).ready(function($){
 			var eventTop = self.eventSlotHeight*(start - self.timelineStart)/self.timelineUnitDuration*(20/50.0),
 				eventHeight = self.eventSlotHeight*duration/self.timelineUnitDuration*(20/50.0);
 
+
+			/*
 			$(this).css({
 				top: (eventTop -1) +'px',
-				height: (eventHeight+1)+'px'
+				height: (eventHeight+1)+'px',
+
+
 			});
+			 */
+
+			if(Math.random()<0.5){
+				console.log("red");
+					$(this).css({
+				top: (eventTop -1) +'px',
+				height: (eventHeight+1)+'px',
+						background: "rgba(16, 127, 40,0.5)",
+
+
+			});
+				}else{
+				console.log("blue");
+					$(this).css({
+				top: (eventTop -1) +'px',
+				height: (eventHeight+1)+'px',
+				background: "rgba(20, 45, 135,0.5)"
+
+			});
+			}
+
+
+
 		});
 
 		this.element.removeClass('loading');
