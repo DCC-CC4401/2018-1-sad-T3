@@ -76,6 +76,12 @@ TEMPLATES = [
     },
 ]
 
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.app_directories.load_template_source',
+)
+
+
 WSGI_APPLICATION = 'cc4401Inventory.wsgi.application'
 
 
@@ -134,5 +140,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     '/var/www/static/',
+    '',
 ]
 

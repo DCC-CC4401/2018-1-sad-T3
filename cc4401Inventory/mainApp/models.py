@@ -42,7 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(_('Apellido'), max_length=30, blank=True)
     date_joined = models.DateTimeField(_('Fecha de Registro'), auto_now_add=True)
     is_active = models.BooleanField(_('Activo'), default=True)
-    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    avatar = models.ImageField(upload_to='static/img/avatars/', null=True, blank=True)
     enabled = models.BooleanField('Habilitado', default=True)
     rut = models.CharField('RUT', max_length=12, unique=True, null=True)
     role = models.IntegerField('Tipo', default=0)
@@ -71,7 +71,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Item(models.Model):
     name = models.CharField('Nombre', max_length=40)
     description = models.TextField('Descripción', blank=True)
-    image = models.ImageField('Imagen del articulo', upload_to='images/items', blank=True)
+    image = models.ImageField('Imagen del articulo', upload_to='static/img/items', blank=True)
 
     class Meta:
         abstract = True
