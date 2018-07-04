@@ -96,7 +96,7 @@ jQuery(document).ready(function($){
 		var time_now_top = self.eventSlotHeight*(time_now - self.timelineStart)/self.timelineUnitDuration*(20/50.0) + 50;
 
 		if(hh>= 9 && hh < 18){
-			hh = (mm < 10) ? mm_fixed[hh] : hh;
+			//hh = (mm < 10) ? mm_fixed[hh] : hh;
 			var line = document.getElementById("line");
 			//line.style.top = time_now_top+"px";
 			document.getElementById("line-container").style.top = time_now_top+"px"
@@ -139,35 +139,18 @@ jQuery(document).ready(function($){
 
 			var eventTop = self.eventSlotHeight*(start - self.timelineStart)/self.timelineUnitDuration*(20/50.0),
 				eventHeight = self.eventSlotHeight*duration/self.timelineUnitDuration*(20/50.0);
+			var bgcolor = $(this).attr('bgcolor')
 
 
-			/*
 			$(this).css({
 				top: (eventTop -1) +'px',
 				height: (eventHeight+1)+'px',
-
-
-			});
-			 */
-
-			if(Math.random()<0.5){
-				console.log("red");
-					$(this).css({
-				top: (eventTop -1) +'px',
-				height: (eventHeight+1)+'px',
-						background: "rgba(16, 127, 40,0.5)",
-
+				background: bgcolor
 
 			});
-				}else{
-				console.log("blue");
-					$(this).css({
-				top: (eventTop -1) +'px',
-				height: (eventHeight+1)+'px',
-				background: "rgba(20, 45, 135,0.5)"
 
-			});
-			}
+
+
 
 
 

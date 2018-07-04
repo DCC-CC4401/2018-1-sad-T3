@@ -1,11 +1,12 @@
 {% extends 'application_layout.html' %}
 
 {% block title %}
-Artículos
+Sistema de Reserva CEI - Ver Artículos
 {% endblock %}
 
 {% block body %}
-
+{% load static %}
+{% load usersApp_extras %}
 <div class="container">
     <br>
     <div class="row" style="margin-bottom: 20px;">
@@ -59,11 +60,11 @@ Artículos
                                 <label class="input-group-text" for="inputGroupSelect02">Estado</label>
                             </div>
                             <select name="estado" class="custom-select" id="inputGroupSelect02">
-                                <option selected value="">---</option>
-                                <option value="1">Disponible</option>
-                                <option value="2">En Reparaciones</option>
-                                <option value="3">Perdido</option>
-                                <option value="4">No Disponible</option>
+                                <option selected value="A">---</option>
+                                <option value="D">Disponible</option>
+                                <option value="R">En Reparaciones</option>
+                                <option value="L">Perdido</option>
+                                <option value="P">En Préstamo</option>
                             </select>
                         </div>
                     </div>
@@ -73,7 +74,22 @@ Artículos
         </div>
         <div class="col-2"></div>
 
+    <div class="row">
 
+            {% for producto in productos %}
+
+            <div class="card" style="width: 200px; margin: 0 20px">
+                <img class="card-img-top" src="{% static producto.image.url %}" alt="Card image cap">
+                <div class="card-body" style="border-top: 1px solid #EAEAEA">
+
+                    <p class="card-text"><i class="fas fa-circle" style="color:{{ colores|get_item:producto.state }};"></i> {{producto.name}}</p>
+
+                </div>
+            </div>
+            {% endfor %}
+
+
+    </div>
     </div>
 </div>
 
