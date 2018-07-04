@@ -1,7 +1,7 @@
 {% extends 'application_layout.html' %}
 
 {% block title %}
-Artículos
+Sistema de Reserva CEI - Ver Artículos
 {% endblock %}
 
 {% block body %}
@@ -81,7 +81,7 @@ Artículos
             <div class="card" style="width: 200px; margin: 0 20px">
                 <img class="card-img-top" src="{% static producto.image.url %}" alt="Card image cap">
                 <div class="card-body" style="border-top: 1px solid #EAEAEA">
-                    
+
                     <p class="card-text"><i class="fas fa-circle" style="color:{{ colores|get_item:producto.state }};"></i> {{producto.name}}</p>
 
                 </div>
