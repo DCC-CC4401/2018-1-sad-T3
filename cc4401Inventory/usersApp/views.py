@@ -62,8 +62,16 @@ def landing_espacios(request, date = None):
     move_controls.append((datetime.datetime.strptime(current_date,"%Y-%m-%d")+datetime.timedelta(weeks=1)).strftime("%Y-%m-%d"))
     move_controls.append((datetime.datetime.strptime(current_date,"%Y-%m-%d")+datetime.timedelta(weeks=4)).strftime("%Y-%m-%d"))
 
-    context = {'reservations' : res_list, 'current_date' : current_date, 'controls' : move_controls}
+    delta = (datetime.datetime.strptime(current_date, "%Y-%m-%d").isocalendar()[2])-1
+    monday = ((datetime.datetime.strptime(current_date, "%Y-%m-%d") - datetime.timedelta(days=delta)).strftime("%d/%m/%Y"))
+    context = {'reservations' : res_list,
+               'current_date' : current_date,
+               'controls' : move_controls,
+               'actual_monday' : monday}
     return render(request, 'espacios.html', context)
+
+
+
 
 
 def landing_search(request, productos):
@@ -78,6 +86,8 @@ def landing_search(request, productos):
                    }
         print(productos)
         return render(request, 'articulos.html', context)
+
+
 
 
 def buscar(request):
