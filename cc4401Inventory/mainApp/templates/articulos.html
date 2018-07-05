@@ -17,7 +17,7 @@ Sistema de Reserva CEI - Ver Artículos
 
             <div class="btn-group" role="group" aria-label="Basic example">
                 <a href="" class="btn btn-success disabled" role="button" aria-disabled="true">Artículos</a>
-                <a href="{% url 'espacios' %}" class="btn btn-light " role="button" aria-disabled="false">Espacios</a>
+                <a href="{% url 'landing_spaces' %}" class="btn btn-light " role="button" aria-disabled="false">Espacios</a>
             </div>
 
     </div>
@@ -27,7 +27,7 @@ Sistema de Reserva CEI - Ver Artículos
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
-        <form method="get" action="{% url 'buscar' %}">
+        <form method="get" action="{% url 'search' %}">
 
             <div class="row">
                 <div class="input-group mb-3" style="margin-bottom: 8px !important;">
