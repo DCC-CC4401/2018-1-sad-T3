@@ -53,17 +53,16 @@ def landing_spaces(request, date=None):
     return render(request, 'espacios.html', context)
 
 
-def landing_search(request, productos):
-    if not productos:
-        return landing_articulos(request)
+def landing_search(request, products):
+    if not products:
+        return landing_articles(request)
     else:
-        context = {'productos' : productos,
+        context = {'productos' : products,
                    'colores' : {'D': '#009900',
                                 'R': '#ffcc00',
                                 'P': '#3333cc',
                                 'L': '#cc0000'}
                    }
-        print(productos)
         return render(request, 'articulos.html', context)
 
 
