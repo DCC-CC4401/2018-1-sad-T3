@@ -9,7 +9,7 @@ def login(request):
         pass
 
 
-def create_account(request):
+def sign_up(request):
     if request.method == 'GET':
         return render(request, 'usersApp/create_account.html')
     if request.method == 'POST':
