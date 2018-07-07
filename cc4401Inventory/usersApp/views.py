@@ -24,7 +24,7 @@ def login_submit(request):
 
         context = {'user':user}
         #aca hay que redirigir a la pagina de inicio del usuario
-        return render(request, 'usersApp/success.html', context=context)
+        return redirect('/articles/')
 
     else:
         error_message = 'La contraseña ingresada no es correcta o el usuario no existe'
@@ -54,7 +54,7 @@ def signup_submit(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(request.path_info)
+    return redirect('/')
 
 
 def user_data(request, user_id):
