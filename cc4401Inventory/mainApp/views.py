@@ -3,13 +3,16 @@ from django.utils.timezone import localtime
 import datetime
 from articlesApp.models import Article
 from reservationsApp.models import Reservation
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def landing_articles(request):
     context = {}
     return render(request, 'articulos.html', context)
 
 
+@login_required
 def landing_spaces(request, date=None):
 
     if date:
@@ -53,6 +56,7 @@ def landing_spaces(request, date=None):
     return render(request, 'espacios.html', context)
 
 
+@login_required
 def landing_search(request, products):
     if not products:
         return landing_articles(request)
@@ -66,6 +70,7 @@ def landing_search(request, products):
         return render(request, 'articulos.html', context)
 
 
+@login_required
 def search(request):
     if request.method == "GET":
         query = request.GET['query']
