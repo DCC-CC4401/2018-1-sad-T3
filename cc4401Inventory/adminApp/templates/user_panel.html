@@ -19,7 +19,11 @@
         <th scope="col">Rut</th>
         <th scope="col">Correo</th>
         <th scope="col">Estado</th>
-        <th scope="col"></th>
+        <th scope="col" class="center-column">
+          <a href="#" class="table-button add-button">
+            <i class="fas fa-plus-circle"></i>
+          </a>
+        </th>
       </tr>
       </thead>
       <tbody>
@@ -37,7 +41,10 @@
           No Habilitado
           {% endif %}
         </td>
-        <td></td>
+        <td class="center-column">
+          <a class="table-button" href="#"><i class="fas fa-edit"></i></a>
+          <a class="table-button" href="#"><i class="fas fa-trash"></i></a>
+        </td>
       </tr>
       {% endfor %}
       </tbody>
