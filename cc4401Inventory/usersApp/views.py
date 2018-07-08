@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from mainApp.models import User
 from django.http import HttpResponse, HttpResponseRedirect
@@ -58,11 +59,12 @@ def signup_submit(request):
             login(request, user)
             return redirect('/articles/')
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('/user/login/')
 
-
+@login_required
 def user_data(request, user_id):
     try:
         user = User.objects.get(id=user_id)
