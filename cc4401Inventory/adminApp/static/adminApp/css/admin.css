@@ -1,0 +1,30 @@
+/* Sidebar */
+
+.admin-sidebar {
+    margin-top: 50px;
+}
+
+.admin-sidebar-item {
+    margin: 20px auto;
+    text-align: center;
+    font-size: 30px;
+}
+
+.admin-sidebar-item a {
+    color: #19232d;
+}
+
+.admin-sidebar-item a:hover {
+    color: #e54e53;
+}
+
+/* General */
+
+.admin-table-container {
+    margin-top: 30px;
+}
+
+.admin-table-container h1 {
+    text-align: center;
+    font-size: 30px;
+}

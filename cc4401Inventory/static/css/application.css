@@ -1,0 +1,25 @@
+/* Forms */
+
+.input-group {
+    margin-bottom: 8px !important;
+}
+
+.input-group-prepend span {
+    background-color: #fff !important;
+    border-right: 0px !important;
+}
+
+.input-group input {
+    border-left: 0px !important;
+}
+
+form button[type=submit] {
+    background-color: #79bcb5;
+    color: #fff;
+    border: 0px;
+}
+
+form button[type=submit]:hover {
+    background-color: #bc745f;
+    transition-duration: .5s;
+}
