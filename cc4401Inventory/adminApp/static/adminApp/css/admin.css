@@ -19,6 +19,12 @@
     transition-duration: .5s;
 }
 
+.admin-table-container .table-button {
+    border: none;
+    color: #e54e53;
+    margin: 0 5px;
+}
+
 /* General */
 
 .admin-table-container {
@@ -28,4 +34,5 @@
 .admin-table-container h1 {
     text-align: center;
     font-size: 30px;
+    margin: 15px 0;
 }

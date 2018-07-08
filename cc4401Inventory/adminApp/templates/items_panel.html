@@ -1,7 +1,7 @@
 {% extends 'application_layout.html' %}
 
 {% block title %}
-  Bienvenido!
+  Panel de Administración | Artículos y Espacios
 {% endblock %}
 
 {% block body %}
@@ -45,8 +45,8 @@
             <td>{{ article.name }}</td>
             <td>{{ article.state }}</td>
             <td>
-              <button><i class="fas fa-edit"></i></button>
-              <button><i class="fas fa-trash"></i></button>
+              <a class="table-button" href="#"><i class="fas fa-edit"></i></a>
+              <a class="table-button" href="#"><i class="fas fa-trash"></i></a>
             </td>
           </tr>
           {% endfor %}
@@ -69,10 +69,10 @@
           <tr>
             <td>{{ space.id }}</td>
             <td>{{ space.name }}</td>
-            <td>{{ space.state }}</td>
+            <td>{{ space.get_state_display }}</td>
             <td>
-              <button><i class="fas fa-edit"></i></button>
-              <button><i class="fas fa-trash"></i></button>
+              <a class="table-button" href="#"><i class="fas fa-edit"></i></a>
+              <a class="table-button" href="#"><i class="fas fa-trash"></i></a>
             </td>
           </tr>
           {% endfor %}

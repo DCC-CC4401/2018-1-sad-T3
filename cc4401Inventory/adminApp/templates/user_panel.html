@@ -1,14 +1,15 @@
 {% extends 'application_layout.html' %}
 
 {% block title %}
-  Bienvenido!
+  Panel de Administración | Usuarios
 {% endblock %}
 
 {% block body %}
 <div class="container">
 <div class="row">
   {% include '_sidebar.html' %}
-	<div class="col-md-10">
+	<div class="col-md-10 admin-table-container">
+    <h1>Administración de Usuarios</h1>
     <table class="table table-striped">
       <thead>
       <tr>
