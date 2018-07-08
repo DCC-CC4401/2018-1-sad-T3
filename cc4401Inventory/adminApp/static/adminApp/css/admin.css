@@ -11,11 +11,12 @@
 }
 
 .admin-sidebar-item a {
-    color: #19232d;
+    color: #79bcb5;
 }
 
 .admin-sidebar-item a:hover {
     color: #e54e53;
+    transition-duration: .5s;
 }
 
 /* General */
