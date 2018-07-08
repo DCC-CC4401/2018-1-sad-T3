@@ -98,12 +98,14 @@ Perfil de usuario
     <div class="row">
         <div class="col-xl-6 text-xs-center">
             <div class="card mb-3">
-                <button type="button" class="btn btn-light btn-lg btn-block">Reserva tu espacio</button>
+                <a role="button" class="btn btn-light btn-lg btn-block" href="{% url 'landing_spaces' %}">
+                    Reserva tu espacio</a>
             </div>
         </div>
         <div class="col-xl-6 text-xs-center">
             <div class="card mb-3">
-                <button type="button" class="btn btn-light btn-lg btn-block">Pide tu artículo</button>
+                <a role="button" class="btn btn-light btn-lg btn-block" href="{% url 'landing_articles' %}">
+                    Pide tu artículo</a>
             </div>
         </div>
     </div>
