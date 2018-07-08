@@ -12,7 +12,7 @@
     <div class="container">
       <div class="row ">
         <div class = "col-md-4 offset-md-4">
-          <form action="/user/login/submit/" method="post"> {% csrf_token %}
+          <form action="{% url 'login_submit' %}" method="post"> {% csrf_token %}
           <div class="form-group">
               <label for="inputEmail">Email</label>
               <input name="email" type="email" class="form-control" id="inputEmail" placeholder="Email">
@@ -28,7 +28,7 @@
           </div>
 
           <button type="submit" class="btn btn-primary">Login</button>
-          <a href="/user/signup/" style="float: right">¿No tienes cuenta? Crea una.</a>
+          <a href="{% url 'signup' %}"style="float: right">¿No tienes cuenta? Crea una.</a>
          </form>
           {% if error_message %} <label style="color: #ff272c;"> {{error_message}}</label> {% endif %}
 
