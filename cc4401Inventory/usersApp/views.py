@@ -4,6 +4,10 @@ from django.contrib.auth import authenticate, login, logout
 from mainApp.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 
+from reservationsApp.models import Reservation
+
+from loansApp.models import Loan
+
 
 def login_view(request):
     context = {}
@@ -68,8 +72,12 @@ def logout_view(request):
 def user_data(request, user_id):
     try:
         user = User.objects.get(id=user_id)
+        reservation = Reservation.objects.filter(user = user_id).order_by('-starting_date_time')[:10]
+        loan = Loan.objects.filter(user = user_id).order_by('-starting_date_time')[:10]
         context = {
-            'user': user
+            'user': user,
+            'reservation': reservation,
+            'loan': loan
         }
         return render(request, 'user_profile.html', context)
     except:
