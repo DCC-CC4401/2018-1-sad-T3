@@ -1,7 +1,7 @@
 {% extends 'application_layout.html' %}
 
 {% block title %}
-  Bienvenido!
+  Panel de Administración | Préstamos y Reservas
 {% endblock %}
 
 {% block body %}
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 admin-table-container">
         <h1>Pendientes</h1>
         <table id="reservations-table" class="table table-striped">
           <thead>
@@ -38,7 +38,7 @@
           </tbody>
         </table>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 admin-table-container">
         <h1>Pedidos</h1>
         <table id="loans-table" class="table table-striped">
           <thead>

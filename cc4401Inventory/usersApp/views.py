@@ -53,13 +53,18 @@ def signup_submit(request):
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         password = request.POST['password']
+        rut = request.POST['RUT']
 
         if User.objects.filter(email = email).exists():
             error_message = 'Ya existe una cuenta con ese correo.'
             context['error_message'] = error_message
             return render(request, 'usersApp/create_account.html', context=context)
+        elif User.objects.filter(rut = rut).exists():
+            error_message = 'Ya existe una cuenta con ese rut'
+            context['error_message'] = error_message
+            return render(request, 'usersApp/create_account.html', context=context)
         else:
-            user = User.objects.create_user(first_name=first_name, email=email, password=password)
+            user = User.objects.create_user(first_name=first_name, email=email, password=password, rut = rut)
             login(request, user)
             return redirect('/articles/')
 

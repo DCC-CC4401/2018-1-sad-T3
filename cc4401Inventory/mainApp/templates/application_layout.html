@@ -3,19 +3,25 @@
 <head>
   {% load bootstrap4 %}
   {% load static %}
+  {% load staticfiles %}
 
 	{% bootstrap_css %}
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
-	<link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Resource style -->
+  <link rel="stylesheet" href="{% static 'css/application.css' %}">
+  <link rel="stylesheet" href="{% static 'mainApp/css/schedule_reset.css' %}">
+	<link rel="stylesheet" href="{% static 'mainApp/css/schedule.css' %}">
+	<link rel="stylesheet" href="{% static 'adminApp/css/admin.css' %}">
+  <link rel="stylesheet" href="{% static 'articlesApp/css/article.css' %}">
   <meta charset="UTF-8">
   <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
   {% include '_navbar.html' %}
-  {% block body %}
-  {% endblock %}
-
+  <div id="main-content">
+    {% block body %}
+    {% endblock %}
+  </div>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   {% bootstrap_javascript %}
 </body>

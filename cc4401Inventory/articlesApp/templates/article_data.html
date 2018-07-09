@@ -1,55 +1,98 @@
+
 {% extends 'application_layout.html' %}
 
 {% load static %}
 
 {% block title %}
-  Artículos
+  Ficha del artículo: {{ article.name }}
 {% endblock %}
+
 
 {% block body %}
 <div class = "container">
   <div class="row">
-    <div class="col-md-7">
-      <h1> Nombre artículo </h1>
-      <img src= " {% static "articlesApp/mesa.jpeg" %}" class="img-fluid" alt="Foto" />
-      <p> Lorem ipsum blablbalbalblablab dolor kasjkdjasdkfsaf asdsadafasd asdiv xcjsad
-      asdad askfjaskd faskjd sda sdas fasvjxpg mdkcvjx sdaskjd </p>
+    <div class="col-md-4 offset-1">
+
+      <div class="row">
+        <h1 class="article-name">
+          {{ article.name }}
+        {% if article.state == "D" %}
+            <span class="badge badge-pill badge-success"><i class="fas fa-chevron-left"></i> {{  article.get_state_display }}</span>
+          {% elif article.state == "P" %}
+            <span class="badge badge-pill badge-primary"><i class="fas fa-chevron-left"></i> {{  article.get_state_display }}</span>
+          {% elif article.state == "L" %}
+            <span class="badge badge-pill badge-danger"><i class="fas fa-chevron-left"></i> {{  article.get_state_display }}</span>
+          {% elif article.state == "R" %}
+            <span class="badge badge-pill badge-warning"><i class="fas fa-chevron-left"></i> {{  article.get_state_display }}</span>
+          {% endif %}
+         </h1>
+      </div>
+        {% if article.image %}
+            <img src= " {% static article.image.url %}" class="img-fluid" alt="Foto" style="height: 400px" />
+        {% else %}
+            <img class="card-img-top" src="{% static 'img/items/default_article.jpg' %}" alt="Card image cap">
+        {% endif %}
+
+      <div class="card">
+        <div class="card-header article-description-title">Descripción</div>
+        <div class="card-body">
+          <p class="card-text">{{ article.description }}</p>
+        </div>
+      </div>
     </div>
 
-    <div class = "col-md-5">
-      <h3>Solicitar reserva</h3>
-      <form>
+    <div class = "col-md-5 offset-2">
+      <h3 class="block-title">Solicitar reserva</h3>
+      <form action="{% url  'article_request' %}" method="post" class="reservation-form">
+        {% csrf_token%}
+        <input type="hidden" name="article_id" value="{{ article.id }}">
         <div class = "row">
-          <label>Fecha: </label> <input type = "date" name = "desde" />
-        </div>
-        <div class = "row">
-          <label>Hora: </label> <input type = "time" name = "asdad" />
-        </div>
-        <button class = "btn btn-primary" align = "right"> Pedir </button>
-      </form>
-        <div class = "row">
-          <h3> Historial de reservas</h3>
-          <div class = "table-responsive">
-            <table class = "table">
-              <thead>
-                <th>articulo</th>
-                <th>fecha inicio</th>
-                <th>fecha fin</th>
-              </thead>
-              <tbody>
-               <tr>
-                 <th>microfono</th>
-                 <th>03/03/2003</th>
-                 <th>03/04/2003</th>
-                </tr>
-               <tr>
-                 <th>microfono</th>
-                 <th>03/03/2003</th>
-                 <th>03/04/2003</th>
-                </tr>
-              </tbody>
-            </table>
+          <div class="col-md-4">
+            <label>Fecha inicio: </label>
           </div>
+          <div class="col-md-8">
+            <input name="fecha_inicio" type = "date" name = "desde" /> <label><i class="far fa-calendar-alt"></i></label>
+          </div>
+        </div>
+        <div class = "row">
+          <div class="col-md-4">
+            <label>Hora inicio: </label>
+          </div>
+          <div class="col-md-8">
+            <input name="hora_inicio" type = "time" name = "asdad" />
+          </div>
+        </div>
+
+        <div class = "row">
+          <div class="col-md-4">
+            <label>Fecha fin: </label>
+          </div>
+          <div class="col-md-8">
+            <input name="fecha_fin" type = "date" name = "desde" /> <label><i class="far fa-calendar-alt"></i></label>
+          </div>
+        </div>
+        <div class = "row">
+          <div class="col-md-4">
+            <label>Hora fin: </label>
+          </div>
+          <div class="col-md-8">
+            <input name="hora_fin" type = "time" name = "asdad" />
+          </div>
+        </div>
+        <div class = "row">
+          <button type="submit" class = "btn btn-primary float-right"> Pedir </button>
+        </div>
+
+      </form>
+        <div class = "row reservation-history-container">
+          <h3 class="block-title"> Historial de reservas</h3>
+            <div class="reservation-history">
+                <ul>
+                    {% for elemento in last_loans %}
+                        <li>{{ elemento }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 

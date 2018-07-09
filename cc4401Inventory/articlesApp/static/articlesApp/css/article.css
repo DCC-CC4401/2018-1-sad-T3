@@ -1,0 +1,31 @@
+.article-name {
+    font-size: 27px !important;
+}
+
+.article-description-title {
+    background-color: #6c9cff;
+    color: #ffffff;
+}
+
+.reservation-form {
+    border-radius: 7px;
+    border: 1px solid darkgrey;
+    padding: 5px 30px
+}
+
+.reservation-history {
+    padding: 10px 0px;
+    overflow: scroll;
+    height: 200px;
+    border-radius: 7px;
+    border: 1px solid darkgrey;
+    width: 100%;
+}
+
+.reservation-history-container {
+    margin-top: 30px;
+}
+
+.block-title {
+    margin-bottom: 10px;
+}
