@@ -10,3 +10,4 @@ urlpatterns = [
     path('<int:article_id>/edit_description', views.article_edit_description, name='article_edit_description'),
     path('request', views.article_request, name='article_request'),
 ]
+g
