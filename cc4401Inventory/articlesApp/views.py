@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from articlesApp.models import Article
 from loansApp.models import Loan
 from datetime import datetime
+import random, os
 import pytz
 
 def article_data(request, article_id):
@@ -44,3 +45,34 @@ def article_data_admin(request, article_id):
             return render(request, 'article_data_admin.html', context)
         except:
             return redirect('/')
+
+
+
+def article_edit_name(request, article_id):
+
+    if request.method == "POST":
+        a = Article.objects.get(id=article_id)
+        a.name = request.POST["name"]
+        a.save()
+    return redirect('/article/'+str(article_id)+'/edit')
+
+def article_edit_image(request, article_id):
+
+    if request.method == "POST":
+        u_file = request.FILES["image"]
+        extension = os.path.splitext(u_file.name)[1]
+        a = Article.objects.get(id=article_id)
+        a.image.save(str(article_id)+"_image"+extension, u_file)
+        a.save()
+
+    return redirect('/article/' + str(article_id) + '/edit')
+
+
+
+def article_edit_description(request, article_id):
+    if request.method == "POST":
+        a = Article.objects.get(id=article_id)
+        a.description = request.POST["description"]
+        a.save()
+
+    return redirect('/article/' + str(article_id) + '/edit')
