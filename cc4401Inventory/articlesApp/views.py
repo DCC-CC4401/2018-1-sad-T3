@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from articlesApp.models import Article
 from loansApp.models import Loan
+from django.db import models
 from datetime import datetime
 import random, os
 import pytz
+
 
 
 @login_required
@@ -40,9 +42,22 @@ def article_data(request, article_id):
         print(e)
         return redirect('/')
 
+
 @login_required
 def article_request(request):
-    return render(request, 'article_data.html')
+    if request.method == 'POST':
+        article = Article.objects.get(id = request.POST['article_id'])
+
+        string_inicio = request.POST['fecha_inicio'] + " " + request.POST['hora_inicio']
+        start_date_time = datetime.strptime(string_inicio, '%Y-%m-%d %H:%M')
+
+        string_fin = request.POST['fecha_fin'] + " " + request.POST['hora_fin']
+        end_date_time = datetime.strptime(string_fin, '%Y-%m-%d %H:%M')
+
+        loan = Loan(article = article, starting_date_time = start_date_time, ending_date_time = end_date_time, user = request.user)
+        loan.save()
+
+        return redirect('/')
 
 
 @login_required
