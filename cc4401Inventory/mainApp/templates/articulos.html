@@ -74,27 +74,21 @@ Sistema de Reserva CEI - Ver Artículos
         </div>
         <div class="col-2"></div>
 
-    <div class="row">
-
-            {% for producto in productos %}
-
-
-
-            <a href="/article/{{ producto.id }}">
-            <div class="card" style="width: 200px; margin: 0 20px">
-            {% if producto.image %}
-                <img class="card-img-top" src="{% static producto.image.url %}" alt="Card image cap">
-            {% else %}
-                <img class="card-img-top" src="{% static 'img/items/default_article.jpg' %}" alt="Card image cap">
-            {% endif %}
+    <div class="card-columns">
+        {% for producto in productos %}
+            <div class="card item-card">
+            <a href="{% url 'article_data' producto.id %}">
+              {% if producto.image %}
+                  <img class="card-img-top" src="{% static producto.image.url %}" alt="Card image cap">
+              {% else %}
+                  <img class="card-img-top" src="{% static 'img/items/default_article.jpg' %}" alt="Card image cap">
+              {% endif %}
                 <div class="card-body" style="border-top: 1px solid #EAEAEA">
-
                     <p class="card-text"><i class="fas fa-circle" style="color:{{ colores|get_item:producto.state }};"></i> {{producto.name}}</p>
-
                 </div>
+            </a>
             </div>
-                </a>
-            {% endfor %}
+        {% endfor %}
 
 
     </div>
