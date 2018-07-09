@@ -1,7 +1,7 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
   <a class="navbar-brand" href="{% url 'landing_articles' %}">
-    <img src="{% static 'images/logo_navbar_cei.png' %}" />
+    <img class="navbar-logo" src="{% static 'images/logo_navbar_cei.png' %}" />
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -10,7 +10,18 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'user_data' user.id %}">{{user.get_full_name}}</a>
+        <a class="nav-link" href="{% url 'user_data' user.id %}">
+          <div class="navbar-user-name">
+            {% if user.enabled %}
+              <span class="badge badge-pill badge-success">Habilitado</span>
+            {% else %}
+              <span class="badge badge-pill badge-danger">No Habilitado</span>
+            {% endif %}
+            {{user.get_full_name}}
+          </div>
+          <div class="navbar-user-rut">{{ user.rut }}</div>
+          <div class="navbar-user-email">{{ user.get_email }}</div>
+        </a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
