@@ -92,52 +92,153 @@
 
     <div class="container">
 
-        <p></p>
+    <p></p>
 
-        <!--Botones de reservar espacio y pedir artículos-->
-        <div class="row">
-            <div class="col-xl-6 text-xs-center">
-                <div class="card mb-3">
-                    <a role="button" class="btn btn-light btn-lg btn-block" href="{% url 'landing_spaces' %}">
-                        Reserva tu espacio</a>
-                </div>
-            </div>
-            <div class="col-xl-6 text-xs-center">
-                <div class="card mb-3">
-                    <a role="button" class="btn btn-light btn-lg btn-block" href="{% url 'landing_articles' %}">
-                        Pide tu artículo</a>
-                </div>
+    <!--Botones de reservar espacio y pedir artículos-->
+    <div class="row">
+        <div class="col-xl-6 text-xs-center">
+            <div class="card mb-3">
+                <a role="button" class="btn btn-light btn-lg btn-block" href="{% url 'landing_spaces' %}">
+                    Reserva tu espacio</a>
             </div>
         </div>
-
-        <div class="row">
-            <br>
-            <!-- Nav pills Reservas y Préstamos-->
-            <div class="col-xl-6 text-xs-center">
-                <ul class="nav nav-pills" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="pill" href="#reservas">Reservas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="pill" href="#prestamos">Préstamos</a>
-                    </li>
-                </ul>
+        <div class="col-xl-6 text-xs-center">
+            <div class="card mb-3">
+                <a role="button" class="btn btn-light btn-lg btn-block" href="{% url 'landing_articles' %}">
+                    Pide tu artículo</a>
             </div>
+        </div>
+    </div>
 
-            <!-- Opción de eliminar seleccionados-->
-            <div class="col-xl-6 text-xs-center" style="text-align: right">
-                <form name="formularioEliminar">
-                    <i class="fas fa-trash-alt"></i>
-                    <input type="submit" name="Eliminar" value="Eliminar seleccionados" class="btn btn-link" disabled>
-                </form>
-            </div>
+    <div class="row">
+        <br>
+        <!-- Nav pills Reservas y Préstamos-->
+        <div class="col-xl-6 text-xs-center">
+            <ul class="nav nav-pills" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="pill" href="#reservas">Reservas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#prestamos">Préstamos</a>
+                </li>
+            </ul>
+        </div>
 
-            <!-- Contenido de las Reservas y Préstamos-->
-            <div class="tab-content">
+        <!-- Opción de eliminar seleccionados-->
+        <div class="col-xl-6 text-xs-center" style="text-align: right">
+            <form name="formularioEliminar">
+                <i class="fas fa-trash-alt"></i>
+                <input type="submit" name="Eliminar" value="Eliminar seleccionados" class="btn btn-link" disabled>
+            </form>
+        </div>
 
-                <!-- Contenido de reservas-->
-                <div id="reservas" class="container tab-pane active"><br>
-                    {% if reservation %}
+        <!-- Contenido de las Reservas y Préstamos-->
+        <div class="tab-content">
+
+            <!-- Contenido de reservas-->
+            <div id="reservas" class="container tab-pane active"><br>
+                {% if reservation %}
+                    <div class="row">
+
+                    <!-- Checkbox, Nombre, Estado-->
+                    <div class="col-lg-3">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                             aria-orientation="vertical">
+
+                            {% for res in reservation %}
+
+                                <a class="form-group">
+                                    <a class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck"
+                                               onclick="document.formularioEliminar.Eliminar.disabled=!document.formularioEliminar.Eliminar.disabled">
+                                    </a>
+                                </a>
+
+                                <!-- Tener seleccionado la primera casilla por default-->
+                                {% if forloop.counter0 == 0 %}
+                                    <a class="nav-link active d-flex justify-content-between align-items-center"
+                                       id="v-pills-{{ res.pk }}-tab" data-toggle="pill"
+                                       href="#v-pills-{{ res.pk }}"
+                                       role="tab" aria-controls="v-pills-{{ res.pk }}" aria-selected="false">
+                                {% else %}
+                                    <a class="nav-link d-flex justify-content-between align-items-center"
+                                       id="v-pills-{{ res.pk }}-tab" data-toggle="pill"
+                                       href="#v-pills-{{ res.pk }}"
+                                       role="tab" aria-controls="v-pills-{{ res.pk }}" aria-selected="false">
+                                {% endif %}
+
+                            {{ res.space.name }} <span
+                                    class="badge badge-pill badge-light">{{ res.get_state_display }}</span></a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Contenido de cada objeto y/o espacio del resumen de reservas-->
+                    <div class="col-lg-9">
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <div class="tab-content" id="v-pills-tabContent">
+
+                                    {% for reser in reservation %}
+
+                                        {% if forloop.counter0 == 0 %}
+                                            <div class="tab-pane fade show active" id="v-pills-{{ reser.pk }}"
+                                                 role="tabpanel"
+                                                 aria-labelledby="v-pills-{{ reser.pk }}-tab">
+                                        {% else %}
+                                            <div class="tab-pane fade" id="v-pills-{{ reser.pk }}" role="tabpanel"
+                                                 aria-labelledby="v-pills-{{ reser.pk }}-tab">
+                                        {% endif %}
+
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h2 class="mb-1">{{ reser.space.name }}</h2>
+                                        <medium><strong>{{ reser.starting_date_time }}</strong></medium>
+                                    </div>
+                                    <medium class="text-muted">{{ reser.get_state_display }}</medium>
+
+                                    <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+                                    <p>{{ reser.space.description }}</p>
+
+                                    <div class="timeline">
+                                        <div class="container_timeline right">
+                                            <div class="content">
+                                                <p><strong>23/04/2018 12:34</strong> Solicitud en proceso
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="container_timeline right">
+                                            <div class="content">
+                                                <p><strong>23/04/2018 12:34</strong> Solicitud en Enviado
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="container_timeline right">
+                                            <div class="content">
+                                                <p><strong>23/04/2018 12:34</strong> Solicitud enviada</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                    {% endfor %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                {% else %}
+                    <p>No se han realizado reservas</p>
+                {% endif %}
+                </div>
+
+                <!-- Contenido de préstamos-->
+                <div id="prestamos" class="container tab-pane fade"><br>
+                    {% if loan %}
+
                         <div class="row">
 
                         <!-- Checkbox, Nombre, Estado-->
@@ -145,30 +246,23 @@
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                  aria-orientation="vertical">
 
-                                {% for res in reservation %}
-
-                                    <a class="form-group">
-                                        <a class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="gridCheck"
-                                                   onclick="document.formularioEliminar.Eliminar.disabled=!document.formularioEliminar.Eliminar.disabled">
-                                        </a>
-                                    </a>
+                                {% for l in loan %}
 
                                     <!-- Tener seleccionado la primera casilla por default-->
                                     {% if forloop.counter0 == 0 %}
                                         <a class="nav-link active d-flex justify-content-between align-items-center"
-                                           id="v-pills-{{ res.pk }}-tab" data-toggle="pill"
-                                           href="#v-pills-{{ res.pk }}"
-                                           role="tab" aria-controls="v-pills-{{ res.pk }}" aria-selected="false">
+                                           id="v-pills-{{ l.pk }}-tab" data-toggle="pill"
+                                           href="#v-pills-{{ l.pk }}"
+                                           role="tab" aria-controls="v-pills-{{ l.pk }}" aria-selected="false">
                                     {% else %}
                                         <a class="nav-link d-flex justify-content-between align-items-center"
-                                           id="v-pills-{{ res.pk }}-tab" data-toggle="pill"
-                                           href="#v-pills-{{ res.pk }}"
-                                           role="tab" aria-controls="v-pills-{{ res.pk }}" aria-selected="false">
+                                           id="v-pills-{{ l.pk }}-tab" data-toggle="pill"
+                                           href="#v-pills-{{ l.pk }}"
+                                           role="tab" aria-controls="v-pills-{{ l.pk }}" aria-selected="false">
                                     {% endif %}
 
-                                {{ res.space.name }} <span
-                                        class="badge badge-pill badge-light">{{ res.get_state_display }}</span></a>
+                                {{ l.article.name }} <span
+                                        class="badge badge-pill badge-light">{{ l.get_state_display }}</span></a>
                                 {% endfor %}
                             </div>
                         </div>
@@ -179,25 +273,25 @@
                                 <div class="card-body">
                                     <div class="tab-content" id="v-pills-tabContent">
 
-                                        {% for reser in reservation %}
+                                        {% for lo in loan %}
 
                                             {% if forloop.counter0 == 0 %}
-                                                <div class="tab-pane fade show active" id="v-pills-{{ reser.pk }}"
+                                                <div class="tab-pane fade show active" id="v-pills-{{ lo.pk }}"
                                                      role="tabpanel"
-                                                     aria-labelledby="v-pills-{{ reser.pk }}-tab">
+                                                     aria-labelledby="v-pills-{{ lo.pk }}-tab">
                                             {% else %}
-                                                <div class="tab-pane fade" id="v-pills-{{ reser.pk }}" role="tabpanel"
-                                                     aria-labelledby="v-pills-{{ reser.pk }}-tab">
+                                                <div class="tab-pane fade" id="v-pills-{{ lo.pk }}" role="tabpanel"
+                                                     aria-labelledby="v-pills-{{ lo.pk }}-tab">
                                             {% endif %}
 
                                         <div class="d-flex w-100 justify-content-between">
-                                            <h2 class="mb-1">{{ reser.space.name }}</h2>
-                                            <medium><strong>{{ reser.starting_date_time }}</strong></medium>
+                                            <h2 class="mb-1">{{ lo.article.name }}</h2>
+                                            <medium><strong>{{ lo.starting_date_time }}</strong></medium>
                                         </div>
-                                        <medium class="text-muted">{{ reser.get_state_display }}</medium>
+                                        <medium class="text-muted">{{ lo.get_state_display }}</medium>
 
                                         <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
-                                        {{ reser.space.description }}
+                                        <p>{{ lo.article.description }}</p>
 
                                         <div class="timeline">
                                             <div class="container_timeline right">
@@ -230,18 +324,10 @@
                             </div>
 
                         </div>
-                    {% else %}
-                        <p>No se han realizado reservas</p>
-                    {% endif %}
-                    </div>
 
-                    <!-- Contenido de préstamos-->
-                    <div id="prestamos" class="container tab-pane fade"><br>
-                        {% if loan %}
-                            <p> Se han realizado préstamos</p>
-                        {% else %}
-                            <p>No se han realizado préstamos</p>
-                        {% endif %}
+                    {% else %}
+                        <p>No se han realizado préstamos</p>
+                    {% endif %}
                     </div>
                 </div>
             </div>
