@@ -25,8 +25,12 @@
           {% endif %}
       </h1>
       </div>
+        {% if article.image %}
+            <img src= " {% static article.image.url %}" class="img-fluid" alt="Foto" style="height: 400px" />
+        {% else %}
+            <img class="card-img-top" src="{% static 'img/items/default_article.jpg' %}" alt="Card image cap">
+        {% endif %}
 
-      <img src= " {% static article.image.url %}" class="img-fluid" alt="Foto" style="height: 400px" />
       <div style ="border:1px dashed darkgrey;border-radius: 5px;padding: 5px;"><p> {{ article.description }} </p></div>
     </div>
 

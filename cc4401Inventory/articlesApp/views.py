@@ -11,11 +11,14 @@ import pytz
 def article_data(request, article_id):
     try:
         article = Article.objects.get(id=article_id)
+
         last_loans = Loan.objects.filter(article=article,
                                          ending_date_time__lt=datetime.now(tz=pytz.utc)
                                          ).order_by('-ending_date_time')[:10]
+
         loan_list = list()
         for loan in last_loans:
+
             starting_day = loan.starting_date_time.strftime("%d-%m-%Y")
             ending_day = loan.ending_date_time.strftime("%d-%m-%Y")
             starting_hour = loan.starting_date_time.strftime("%H:%M")
@@ -31,6 +34,7 @@ def article_data(request, article_id):
             'article': article,
             'last_loans': loan_list
         }
+
         return render(request, 'article_data.html', context)
     except:
         return redirect('/')
@@ -61,7 +65,7 @@ def article_edit_name(request, article_id):
         a.save()
     return redirect('/article/'+str(article_id)+'/edit')
 
-  
+
 @login_required
 def article_edit_image(request, article_id):
 
