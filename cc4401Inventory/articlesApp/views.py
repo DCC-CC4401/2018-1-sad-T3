@@ -6,6 +6,7 @@ from django.db import models
 from datetime import datetime
 import random, os
 import pytz
+from django.contrib import messages
 
 
 
@@ -48,16 +49,24 @@ def article_request(request):
     if request.method == 'POST':
         article = Article.objects.get(id = request.POST['article_id'])
 
-        string_inicio = request.POST['fecha_inicio'] + " " + request.POST['hora_inicio']
-        start_date_time = datetime.strptime(string_inicio, '%Y-%m-%d %H:%M')
+        try:
+            string_inicio = request.POST['fecha_inicio'] + " " + request.POST['hora_inicio']
+            start_date_time = datetime.strptime(string_inicio, '%Y-%m-%d %H:%M')
+            string_fin = request.POST['fecha_fin'] + " " + request.POST['hora_fin']
+            end_date_time = datetime.strptime(string_fin, '%Y-%m-%d %H:%M')
+            if start_date_time > end_date_time:
+                messages.warning(request, 'la fecha de inicio debe ser anterior a la de fin')
+            elif start_date_time < datetime.now():
+                messages.warning(request, 'la fecha de inicio debe ser posterior al día de hoy')
+            else:
+                loan = Loan(article=article, starting_date_time=start_date_time, ending_date_time=end_date_time,
+                            user=request.user)
+                loan.save()
+                messages.success(request, 'pedido enviado con éxito')
+        except:
+            messages.warning(request, 'ingrese una fecha y hora válida')
 
-        string_fin = request.POST['fecha_fin'] + " " + request.POST['hora_fin']
-        end_date_time = datetime.strptime(string_fin, '%Y-%m-%d %H:%M')
-
-        loan = Loan(article = article, starting_date_time = start_date_time, ending_date_time = end_date_time, user = request.user)
-        loan.save()
-
-        return redirect('/')
+        return redirect('/article/' + str(article.id))
 
 
 @login_required
