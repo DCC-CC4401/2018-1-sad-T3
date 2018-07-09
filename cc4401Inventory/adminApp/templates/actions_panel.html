@@ -10,36 +10,58 @@
   {% include '_sidebar.html' %}
 	<div class="col-md-10">
     <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <h1>LA MALDITA GRILAAAAAAAAAAAAAAAA</h1>
-      </div>
+
+        {% include '_schedule_landing.html' %}
+
     </div>
     <div class="row">
       <div class="col-md-6">
-        <h1>Pendientes</h1>
-        <table id="reservations-table" class="table table-striped">
+        <h1>Reservas Pendientes</h1>
+        <form action="{% url 'modify_reservations' %}" method="post">
+        {% csrf_token %}
+          <table id="reservations-table" class="table table-striped">
           <thead>
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Nombre del Espacio</th>
             <th scope="col">Usuario</th>
             <th scope="col">Fecha de Prestamo</th>
+            <th scope="col"> Seleccionar</th>
           </tr>
           </thead>
           <tbody>
-          {% for reservation in reservations %}
+
+          {% for reservation in reservations_query %}
           <tr>
             <td>{{ reservation.id }}</td>
             <td>{{ reservation.space.name }}</td>
             <td>{{ reservation.user.get_full_name }}</td>
             <td>{{ reservation.starting_date_time }}</td>
+            <td><input type="checkbox" name="selected" value="{{ reservation.id }}"></td>
           </tr>
           {% endfor %}
+
           </tbody>
         </table>
+        <div class="row">
+            <button name="accept" value="1" type="submit"> Aceptar Reservas</button><button name="accept" value="0" type="submit"> Rechazar Reservas</button>
+        </div>
+        </form>
       </div>
+
       <div class="col-md-6">
-        <h1>Pedidos</h1>
+        <h1>Préstamos</h1>
+      <div class="row">
+          <form action="" method="get">
+              <input type="hidden" name="date" value="{{ current_date }}">
+          <div class="btn-group" role="group" aria-label="Basic example" style="margin: 10px auto;">
+            <button name = "filter" value="todos" type="submit" class="btn btn-secondary">Todos</button>
+              <button name = "filter" value="vigentes" type="submit" class="btn btn-secondary">Vigentes</button>
+            <button name = "filter" value="caducados" type="submit" class="btn btn-secondary">Caducados</button>
+            <button name = "filter" value ="perdidos" type="submit" class="btn btn-secondary">Perdidos</button>
+            </div>
+          </form>
+      </div>
         <table id="loans-table" class="table table-striped">
           <thead>
           <tr>
@@ -47,6 +69,7 @@
             <th scope="col">Nombre del Espacio</th>
             <th scope="col">Usuario</th>
             <th scope="col">Fecha de Prestamo</th>
+              <th scope="col">Estado</th>
           </tr>
           </thead>
           <tbody>
@@ -56,6 +79,7 @@
             <td>{{ loan.article.name }}</td>
             <td>{{ loan.user.get_full_name }}</td>
             <td>{{ loan.starting_date_time }}</td>
+          <td>{{ loan.get_state_display }}</td>
           </tr>
           {% endfor %}
           </tbody>
