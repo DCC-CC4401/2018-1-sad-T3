@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from mainApp.models import User
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 
 
@@ -28,9 +29,8 @@ def login_submit(request):
         return redirect('/articles/')
 
     else:
-        error_message = 'La contraseña ingresada no es correcta o el usuario no existe'
-        context['error_message'] = error_message
-        return render(request, 'usersApp/login.html', context=context)
+        messages.warning(request, 'La contraseña ingresada no es correcta o el usuario no existe')
+        return redirect('/user/login')
 
 #se llama cuando se quiere acceder a la pagina de creacion de cuentas
 def signup(request):
@@ -52,13 +52,11 @@ def signup_submit(request):
         rut = request.POST['RUT']
 
         if User.objects.filter(email = email).exists():
-            error_message = 'Ya existe una cuenta con ese correo.'
-            context['error_message'] = error_message
-            return render(request, 'usersApp/create_account.html', context=context)
+            messages.warning(request, 'Ya existe una cuenta con ese correo.')
+            return redirect('/user/signup/')
         elif User.objects.filter(rut = rut).exists():
-            error_message = 'Ya existe una cuenta con ese rut'
-            context['error_message'] = error_message
-            return render(request, 'usersApp/create_account.html', context=context)
+            messages.warning(request, 'Ya existe una cuenta con ese rut')
+            return redirect('/user/signup/')
         else:
             user = User.objects.create_user(first_name=first_name, email=email, password=password, rut = rut)
             login(request, user)
