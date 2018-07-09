@@ -140,97 +140,90 @@
                     {% if reservation %}
                         <div class="row">
 
-                            <!-- Checkbox, Nombre, Estado-->
-                            <div class="col-lg-3">
-                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-                                     aria-orientation="vertical">
+                        <!-- Checkbox, Nombre, Estado-->
+                        <div class="col-lg-3">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                 aria-orientation="vertical">
+
+                                {% for res in reservation %}
+
                                     <a class="form-group">
                                         <a class="form-check">
                                             <input class="form-check-input" type="checkbox" id="gridCheck"
                                                    onclick="document.formularioEliminar.Eliminar.disabled=!document.formularioEliminar.Eliminar.disabled">
                                         </a>
                                     </a>
-                                    <a class="nav-link active d-flex justify-content-between align-items-center"
-                                       id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
-                                       role="tab" aria-controls="v-pills-home" aria-selected="true">
-                                        Parlante <span class="badge badge-pill badge-light">En proceso</span></a>
-                                    <a class="form-group">
-                                        <a class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="grid   ck">
-                                        </a>
-                                    </a>
-                                    <a class="nav-link d-flex justify-content-between align-items-center"
-                                       id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
-                                       role="tab" aria-controls="v-pills-profile" aria-selected="false">
-                                        Quincho <span class="badge badge-pill badge-light">Aceptado</span></a>
-                                    <a class="form-group">
-                                        <a class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                                        </a>
-                                    </a>
-                                    <a class="nav-link d-flex justify-content-between align-items-center"
-                                       id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
-                                       role="tab" aria-controls="v-pills-messages" aria-selected="false">
-                                        Sala 1 <span class="badge badge-pill badge-light">Rechazado</span></a>
-                                </div>
+
+                                    <!-- Tener seleccionado la primera casilla por default-->
+                                    {% if forloop.counter0 == 0 %}
+                                        <a class="nav-link active d-flex justify-content-between align-items-center"
+                                           id="v-pills-{{ res.pk }}-tab" data-toggle="pill"
+                                           href="#v-pills-{{ res.pk }}"
+                                           role="tab" aria-controls="v-pills-{{ res.pk }}" aria-selected="false">
+                                    {% else %}
+                                        <a class="nav-link d-flex justify-content-between align-items-center"
+                                           id="v-pills-{{ res.pk }}-tab" data-toggle="pill"
+                                           href="#v-pills-{{ res.pk }}"
+                                           role="tab" aria-controls="v-pills-{{ res.pk }}" aria-selected="false">
+                                    {% endif %}
+
+                                {{ res.space.name }} <span
+                                        class="badge badge-pill badge-light">{{ res.get_state_display }}</span></a>
+                                {% endfor %}
                             </div>
+                        </div>
 
-                            <!-- Contenido de cada objeto y/o espacio del resumen de reservas-->
-                            <div class="col-lg-9">
-                                <div class="card mt-4">
-                                    <div class="card-body">
-                                        <div class="tab-content" id="v-pills-tabContent">
-                                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                                                 aria-labelledby="v-pills-home-tab">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h2 class="mb-1">Parlantes</h2>
-                                                    <medium><strong>23 de Abr de 2018</strong></medium>
-                                                </div>
-                                                <medium class="text-muted">En proceso</medium>
-                                                <img class="card-img-top img-fluid" src="http://placehold.it/900x400"
-                                                     alt="">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                    Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam
-                                                    id
-                                                    dolores, sint aperiam sequi pariatur praesentium animi perspiciatis
-                                                    molestias iure, ducimus!</p>
+                        <!-- Contenido de cada objeto y/o espacio del resumen de reservas-->
+                        <div class="col-lg-9">
+                            <div class="card mt-4">
+                                <div class="card-body">
+                                    <div class="tab-content" id="v-pills-tabContent">
 
-                                                <div class="timeline">
-                                                    <div class="container_timeline right">
-                                                        <div class="content">
-                                                            <p><strong>23/04/2018 12:34</strong> Solicitud en proceso
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                        {% for reser in reservation %}
 
-                                                    <div class="container_timeline right">
-                                                        <div class="content">
-                                                            <p><strong>23/04/2018 12:34</strong> Solicitud en Enviado
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                            {% if forloop.counter0 == 0 %}
+                                                <div class="tab-pane fade show active" id="v-pills-{{ reser.pk }}"
+                                                     role="tabpanel"
+                                                     aria-labelledby="v-pills-{{ reser.pk }}-tab">
+                                            {% else %}
+                                                <div class="tab-pane fade" id="v-pills-{{ reser.pk }}" role="tabpanel"
+                                                     aria-labelledby="v-pills-{{ reser.pk }}-tab">
+                                            {% endif %}
 
-                                                    <div class="container_timeline right">
-                                                        <div class="content">
-                                                            <p><strong>23/04/2018 12:34</strong> Solicitud enviada</p>
-                                                        </div>
-                                                    </div>
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h2 class="mb-1">{{ reser.space.name }}</h2>
+                                            <medium><strong>{{ reser.starting_date_time }}</strong></medium>
+                                        </div>
+                                        <medium class="text-muted">{{ reser.get_state_display }}</medium>
+
+                                        <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+                                        {{ reser.space.description }}
+
+                                        <div class="timeline">
+                                            <div class="container_timeline right">
+                                                <div class="content">
+                                                    <p><strong>23/04/2018 12:34</strong> Solicitud en proceso
+                                                    </p>
                                                 </div>
                                             </div>
 
-                                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                                                 aria-labelledby="v-pills-profile-tab">
-                                                <img class="card-img-top img-fluid" src="http://placehold.it/900x400"
-                                                     alt="">
-                                                Descripción Quincho
+                                            <div class="container_timeline right">
+                                                <div class="content">
+                                                    <p><strong>23/04/2018 12:34</strong> Solicitud en Enviado
+                                                    </p>
+                                                </div>
                                             </div>
 
-                                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
-                                                 aria-labelledby="v-pills-messages-tab">
-                                                <img class="card-img-top img-fluid" src="http://placehold.it/900x400"
-                                                     alt="">
-                                                Descripción Sala 1
+                                            <div class="container_timeline right">
+                                                <div class="content">
+                                                    <p><strong>23/04/2018 12:34</strong> Solicitud enviada</p>
+                                                </div>
                                             </div>
+                                        </div>
+
+                                        </div>
+                                        {% endfor %}
+
                                         </div>
                                     </div>
                                 </div>
@@ -240,20 +233,20 @@
                     {% else %}
                         <p>No se han realizado reservas</p>
                     {% endif %}
-                </div>
+                    </div>
 
-                <!-- Contenido de préstamos-->
-                <div id="prestamos" class="container tab-pane fade"><br>
-                    {% if loan %}
-                        <p> Se han realizado préstamos</p>
-                    {% else %}
-                        <p>No se han realizado préstamos</p>
-                    {% endif %}
+                    <!-- Contenido de préstamos-->
+                    <div id="prestamos" class="container tab-pane fade"><br>
+                        {% if loan %}
+                            <p> Se han realizado préstamos</p>
+                        {% else %}
+                            <p>No se han realizado préstamos</p>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
 
     </div>
 
