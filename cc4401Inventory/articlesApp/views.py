@@ -36,8 +36,13 @@ def article_data(request, article_id):
         }
 
         return render(request, 'article_data.html', context)
-    except:
+    except Exception as e:
+        print(e)
         return redirect('/')
+
+@login_required
+def article_request(request):
+    return render(request, 'article_data.html')
 
 
 @login_required
