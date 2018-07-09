@@ -1,0 +1,74 @@
+/* General */
+
+#main-content {
+    padding: 30px 0px;
+}
+
+.btn-success {
+    background-color: #79bcb5 !important;
+    border-color: #79bcb5 !important;
+}
+
+.card-columns {
+    column-count: 5;
+    padding-top: 20px;
+}
+
+.item-card {
+    margin-top: 10px;
+}
+
+/* Forms */
+
+.input-group {
+    margin-bottom: 8px !important;
+}
+
+.input-group-prepend span {
+    background-color: #fff !important;
+    border-right: 0px !important;
+}
+
+.input-group input {
+    border-left: 0px !important;
+}
+
+form button[type=submit] {
+    background-color: #79bcb5;
+    color: #fff;
+    border: 0px;
+}
+
+form button[type=submit]:hover {
+    background-color: #bc745f;
+    transition-duration: .5s;
+}
+
+/* Navbar */
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: #78bbb4;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+.navbar-logo {
+    height: 70px;
+}
+
+.navbar-user-name {
+    text-align: right;
+}
+
+.navbar-user-rut {
+    font-size: 10px;
+    text-align: right;
+}
+
+.navbar-user-email {
+    text-align: right;
+    font-size: 12px;
+}
