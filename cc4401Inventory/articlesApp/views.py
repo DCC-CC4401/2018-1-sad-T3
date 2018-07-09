@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from articlesApp.models import Article
 from loansApp.models import Loan
 from datetime import datetime
 import random, os
 import pytz
 
+
+@login_required
 def article_data(request, article_id):
     try:
         article = Article.objects.get(id=article_id)
@@ -33,6 +36,7 @@ def article_data(request, article_id):
         return redirect('/')
 
 
+@login_required
 def article_data_admin(request, article_id):
     if not request.user.is_staff:
         return redirect('/')
@@ -48,6 +52,7 @@ def article_data_admin(request, article_id):
 
 
 
+@login_required
 def article_edit_name(request, article_id):
 
     if request.method == "POST":
@@ -56,6 +61,8 @@ def article_edit_name(request, article_id):
         a.save()
     return redirect('/article/'+str(article_id)+'/edit')
 
+  
+@login_required
 def article_edit_image(request, article_id):
 
     if request.method == "POST":
@@ -69,6 +76,7 @@ def article_edit_image(request, article_id):
 
 
 
+@login_required
 def article_edit_description(request, article_id):
     if request.method == "POST":
         a = Article.objects.get(id=article_id)
