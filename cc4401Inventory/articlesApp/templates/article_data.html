@@ -36,19 +36,20 @@
 
     <div class = "col-md-5">
       <h3>Solicitar reserva</h3>
-      <form action="" method="" style="border-radius: 7px;border: 1px solid darkgrey; padding: 5px 30px">
+      <form action="{% url  'article_request' %}" method="post" style="border-radius: 7px;border: 1px solid darkgrey; padding: 5px 30px"> {% csrf_token%}
+        <input type="hidden" name="article_id" value="{{ article.id }}">
         <div class = "row" style="margin: 5px 0px">
-          <label>Fecha inicio: </label>  <input style="margin-left: 10px" type = "date" name = "desde" /> <label style="margin-left: 5px;margin-top: 5px"><i class="far fa-calendar-alt"></i></label>
+          <label>Fecha inicio: </label>  <input name="fecha_inicio" style="margin-left: 10px" type = "date" name = "desde" /> <label style="margin-left: 5px;margin-top: 5px"><i class="far fa-calendar-alt"></i></label>
         </div>
         <div class = "row" style="margin: 5px 0px">
-          <label>Hora inicio: </label> <input style="margin-left: 20px" type = "time" name = "asdad" />
+          <label>Hora inicio: </label> <input name="hora_inicio" style="margin-left: 20px" type = "time" name = "asdad" />
         </div>
 
         <div class = "row" style="margin: 5px 0px">
-          <label>Fecha fin: </label>  <input style="margin-left: 10px" type = "date" name = "desde" /> <label style="margin-left: 5px;margin-top: 5px"><i class="far fa-calendar-alt"></i></label>
+          <label>Fecha fin: </label>  <input name="fecha_fin" style="margin-left: 10px" type = "date" name = "desde" /> <label style="margin-left: 5px;margin-top: 5px"><i class="far fa-calendar-alt"></i></label>
         </div>
         <div class = "row" style="margin: 5px 0px">
-          <label>Hora fin: </label> <input style="margin-left: 20px" type = "time" name = "asdad" />
+          <label>Hora fin: </label> <input name="hora_fin" style="margin-left: 20px" type = "time" name = "asdad" />
         </div>
         <div class = "row" style="margin: 5px 0px; text-align: right">
           <button type="submit" class = "btn btn-primary float-right" style="margin: 5px 0px;"> Pedir </button>
