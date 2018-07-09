@@ -1,58 +1,143 @@
-<!DOCTYPE html>
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+
+{% extends 'application_layout.html' %}
+
 {% load static %}
-{% load bootstrap4 %}
-{% bootstrap_css %}
 
-<div class = "container">
+{% block title %}
+ Editando artículo: {{ article.name }}
+{% endblock %}
+
+
+{% block body %}
+<div class = "container" style="margin-top: 20px">
   <div class="row">
-    <div class="col-md-7">
-      <h1> Nombre artículo <span class="badge badge-pill badge-success">Disponible</span> </h1>
-      <img src= " {% static "articlesApp/mesa.jpeg" %}" class="img-fluid" alt="Foto" />
-      <p> Lorem ipsum blablbalbalblablab dolor kasjkdjasdkfsaf asdsadafasd asdiv xcjsad
-      asdad askfjaskd faskjd sda sdas fasvjxpg mdkcvjx sdaskjd </p>
-    </div>
+  <div class="col-md-2">
+  </div>
+    <div class="col-md-8">
 
-    <div class = "col-md-5">
-      <h3>Solicitar reserva</h3>
-      <form>
-        <div class = "row">
-          <label>Fecha: </label> <input type = "date" name = "desde" />
-        </div>
-        <div class = "row">
-          <label>Hora: </label> <input type = "time" name = "asdad" />
-        </div>
-        <button class = "btn btn-primary"> Pedir </button>
-      </form>
-        <div class = "row">
-          <h3> Historial de reservas</h3>
-          <div class = "table-responsive">
-            <table class = "table">
-              <thead>
-                <th>fecha inicio</th>
-                <th>fecha fin</th>
-              </thead>
-              <tbody>
-               <tr>
-                 <th>03/03/2003</th>
-                 <th>03/04/2003</th>
-                </tr>
-               <tr>
-                 <th>03/03/2003</th>
-                 <th>03/04/2003</th>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div class="row"><h1> {{ article.name }}<!-- Button trigger modal -->
+<button type="button" class="btn btn-light" data-toggle="modal" data-target="#editName">
+  <i class="fas fa-edit"></i>
+</button>
+        {% if article.state == "D" %}
+            <span class="badge badge-pill badge-success"><i class="fas fa-chevron-left"></i> {{  article.get_state_display }}</span>
+          {% elif article.state == "P" %}
+            <span class="badge badge-pill badge-primary"><i class="fas fa-chevron-left"></i> {{  article.get_state_display }}</span>
+          {% elif article.state == "L" %}
+            <span class="badge badge-pill badge-danger"><i class="fas fa-chevron-left"></i> {{  article.get_state_display }}</span>
+          {% elif article.state == "R" %}
+            <span class="badge badge-pill badge-warning"><i class="fas fa-chevron-left"></i> {{  article.get_state_display }}</span>
+          {% endif %}
+      </h1>
+      </div>
+
+      <div>
+          {% if article.image %}
+            <img src= " {% static article.image.url %}" class="img-fluid" alt="Foto" style="height: 400px" />
+        {% else %}
+            <img class="card-img-top" src="{% static 'img/items/default_article.jpg' %}" alt="Card image cap">
+        {% endif %}
+          <button type="button" class="btn btn-light" data-toggle="modal" data-target="#editImage">
+            <i class="fas fa-edit"></i>
+      </button></div>
+      <div style="margin-bottom: 30px">
+          <div style ="border:1px dashed darkgrey;border-radius: 5px;padding: 5px;height:120px;width:calc(100% - 60px); display: inline-block; overflow: scroll;">{{ article.description }}</div>
+          <button type="button" class="btn btn-light" data-toggle="modal" data-target="#editDescription" style="margin-bottom:1.6rem">
+              <i class="fas fa-edit"></i>
+          </button>
+      </div>
     </div>
+  <div class="col-md-2">
+  </div>
+
+
 
   </div>
-</div>
 
-</body>
-</html>
+
+
+    <!---  MODALES PARA EDICION DE LOS CAMPOS --->
+
+
+        <!-- Nombre -->
+    <div class="modal fade" id="editName" tabindex="-1" role="dialog" aria-labelledby="editNameLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editNameLabel">Editar Nombre del Artículo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <form action="edit_name" method="post">
+                {% csrf_token %}
+          <div class="modal-body">
+            <input name="name" class="form-control" type="text" placeholder="Ingrese Nombre">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </div>
+            </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Imagen -->
+    <div class="modal fade" id="editImage" tabindex="-1" role="dialog" aria-labelledby="editImageLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editImageLabel">Editar Imagen del Artículo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <form action="edit_image" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+          <div class="modal-body">
+            <label for="editImageControl">Subir Imagen</label>
+            <input type="file" class="form-control-file" id="editImageControl" name="image">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </div>
+            </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Descripcion -->
+    <div class="modal fade" id="editDescription" tabindex="-1" role="dialog" aria-labelledby="editDescriptionLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editDescriptionLabel">Editar Nombre del Artículo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <form action="edit_description" method="post">
+                {% csrf_token %}
+          <div class="modal-body">
+            <div class="form-group">
+                <label for="textarea1">Ingrese Descripción del artículo</label>
+                <textarea name="description" class="form-control" id="textarea1" rows="4">{{ article.description }}</textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </div>
+            </form>
+        </div>
+      </div>
+    </div>
+
+
+</div>
+{% endblock %}
+
