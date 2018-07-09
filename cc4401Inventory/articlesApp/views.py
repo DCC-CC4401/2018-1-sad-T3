@@ -65,13 +65,13 @@ def article_request(request):
             end_date_time = datetime.strptime(string_fin, '%Y-%m-%d %H:%M')
 
             if start_date_time > end_date_time:
-                messages.warning(request, 'La fecha de inicio debe ser anterior a la de fin.')
+                messages.warning(request, 'La reserva debe terminar después de iniciar.')
             elif start_date_time < datetime.now() + timedelta(hours=1):
-                messages.warning(request, 'Los pedidos deben ser hechos al menos con una hora de anticipación')
+                messages.warning(request, 'Los pedidos deben ser hechos al menos con una hora de anticipación.')
             elif start_date_time.date() != end_date_time.date():
-                messages.warning(request, 'Los pedidos deben ser devueltos el mismo día que se entregan')
+                messages.warning(request, 'Los pedidos deben ser devueltos el mismo día que se entregan.')
             elif not verificar_horario_habil(start_date_time) and not verificar_horario_habil(end_date_time):
-                messages.warning(request, 'Los pedidos deben ser hechos en horario habil')
+                messages.warning(request, 'Los pedidos deben ser hechos en horario hábil.')
             else:
                 loan = Loan(article=article, starting_date_time=start_date_time, ending_date_time=end_date_time,
                             user=request.user)
