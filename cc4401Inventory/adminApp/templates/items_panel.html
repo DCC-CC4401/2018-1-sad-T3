@@ -1,7 +1,7 @@
 {% extends 'application_layout.html' %}
 
 {% block title %}
-  Bienvenido!
+  Panel de Administración | Artículos y Espacios
 {% endblock %}
 
 {% block body %}
@@ -10,15 +10,24 @@
   {% include '_sidebar.html' %}
 	<div class="col-md-10">
     <div class="row">
-      <div class="col-md-6 offset-md-3">
+      <div class="col-md-6 offset-md-3 form-container">
         <form>
-          <input type="text" placeholder="Ingrese su busqueda">
-          <input type="submit" value="Buscar">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-search"></i>
+              </span>
+            </div>
+            <input class="form-control" type="text" placeholder="Ingrese su busqueda">
+            <div class="input-group-append">
+              <button class="search-button btn btn-outline-secondary" type="submit">Buscar</button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 admin-table-container">
         <h1>Articulos</h1>
         <table class="table table-striped">
           <thead>
@@ -35,16 +44,16 @@
             <td>{{ article.id }}</td>
             <td>{{ article.name }}</td>
             <td>{{ article.state }}</td>
-            <td>
-              <button><i class="fas fa-edit"></i></button>
-              <button><i class="fas fa-trash"></i></button>
+            <td class="center-column">
+              <a class="table-button" href="#"><i class="fas fa-edit"></i></a>
+              <a class="table-button" href="#"><i class="fas fa-trash"></i></a>
             </td>
           </tr>
           {% endfor %}
           </tbody>
         </table>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 admin-table-container">
         <h1>Espacios</h1>
         <table class="table table-striped">
           <thead>
@@ -60,10 +69,10 @@
           <tr>
             <td>{{ space.id }}</td>
             <td>{{ space.name }}</td>
-            <td>{{ space.state }}</td>
-            <td>
-              <button><i class="fas fa-edit"></i></button>
-              <button><i class="fas fa-trash"></i></button>
+            <td>{{ space.get_state_display }}</td>
+            <td class="center-column">
+              <a class="table-button" href="#"><i class="fas fa-edit"></i></a>
+              <a class="table-button" href="#"><i class="fas fa-trash"></i></a>
             </td>
           </tr>
           {% endfor %}

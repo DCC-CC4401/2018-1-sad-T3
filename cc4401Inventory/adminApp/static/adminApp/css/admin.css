@@ -1,0 +1,46 @@
+/* Sidebar */
+
+.admin-sidebar {
+    margin-top: 50px;
+}
+
+.admin-sidebar-item {
+    margin: 20px auto;
+    text-align: center;
+    font-size: 30px;
+}
+
+.admin-sidebar-item a {
+    color: #79bcb5;
+}
+
+.admin-sidebar-item a:hover {
+    color: #e54e53;
+    transition-duration: .5s;
+}
+
+.admin-table-container .table-button {
+    border: none;
+    color: #e54e53;
+    margin: 0 5px;
+}
+
+/* General */
+
+.admin-table-container {
+    margin-top: 30px;
+}
+
+.admin-table-container h1 {
+    text-align: center;
+    font-size: 30px;
+    margin: 15px 0;
+}
+
+.add-button {
+    color: chartreuse !important;
+}
+
+.center-column {
+    text-align: center;
+}
