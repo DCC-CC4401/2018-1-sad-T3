@@ -9,11 +9,13 @@
 
 
 {% block body %}
-<div class = "container" style="margin-top: 20px">
+<div class = "container">
   <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-4 offset-1">
 
-      <div class="row"><h1> {{ article.name }}
+      <div class="row">
+        <h1 class="article-name">
+          {{ article.name }}
         {% if article.state == "D" %}
             <span class="badge badge-pill badge-success"><i class="fas fa-chevron-left"></i> {{  article.get_state_display }}</span>
           {% elif article.state == "P" %}
@@ -23,7 +25,7 @@
           {% elif article.state == "R" %}
             <span class="badge badge-pill badge-warning"><i class="fas fa-chevron-left"></i> {{  article.get_state_display }}</span>
           {% endif %}
-      </h1>
+         </h1>
       </div>
         {% if article.image %}
             <img src= " {% static article.image.url %}" class="img-fluid" alt="Foto" style="height: 400px" />
@@ -31,34 +33,60 @@
             <img class="card-img-top" src="{% static 'img/items/default_article.jpg' %}" alt="Card image cap">
         {% endif %}
 
-      <div style ="border:1px dashed darkgrey;border-radius: 5px;padding: 5px;"><p> {{ article.description }} </p></div>
+      <div class="card">
+        <div class="card-header article-description-title">Descripción</div>
+        <div class="card-body">
+          <p class="card-text">{{ article.description }}</p>
+        </div>
+      </div>
     </div>
 
-    <div class = "col-md-5">
-      <h3>Solicitar reserva</h3>
-      <form action="{% url  'article_request' %}" method="post" style="border-radius: 7px;border: 1px solid darkgrey; padding: 5px 30px"> {% csrf_token%}
+    <div class = "col-md-5 offset-2">
+      <h3 class="block-title">Solicitar reserva</h3>
+      <form action="{% url  'article_request' %}" method="post" class="reservation-form">
+        {% csrf_token%}
         <input type="hidden" name="article_id" value="{{ article.id }}">
-        <div class = "row" style="margin: 5px 0px">
-          <label>Fecha inicio: </label>  <input name="fecha_inicio" style="margin-left: 10px" type = "date" name = "desde" /> <label style="margin-left: 5px;margin-top: 5px"><i class="far fa-calendar-alt"></i></label>
+        <div class = "row">
+          <div class="col-md-4">
+            <label>Fecha inicio: </label>
+          </div>
+          <div class="col-md-8">
+            <input name="fecha_inicio" type = "date" name = "desde" /> <label><i class="far fa-calendar-alt"></i></label>
+          </div>
         </div>
-        <div class = "row" style="margin: 5px 0px">
-          <label>Hora inicio: </label> <input name="hora_inicio" style="margin-left: 20px" type = "time" name = "asdad" />
+        <div class = "row">
+          <div class="col-md-4">
+            <label>Hora inicio: </label>
+          </div>
+          <div class="col-md-8">
+            <input name="hora_inicio" type = "time" name = "asdad" />
+          </div>
         </div>
 
-        <div class = "row" style="margin: 5px 0px">
-          <label>Fecha fin: </label>  <input name="fecha_fin" style="margin-left: 10px" type = "date" name = "desde" /> <label style="margin-left: 5px;margin-top: 5px"><i class="far fa-calendar-alt"></i></label>
+        <div class = "row">
+          <div class="col-md-4">
+            <label>Fecha fin: </label>
+          </div>
+          <div class="col-md-8">
+            <input name="fecha_fin" type = "date" name = "desde" /> <label><i class="far fa-calendar-alt"></i></label>
+          </div>
         </div>
-        <div class = "row" style="margin: 5px 0px">
-          <label>Hora fin: </label> <input name="hora_fin" style="margin-left: 20px" type = "time" name = "asdad" />
+        <div class = "row">
+          <div class="col-md-4">
+            <label>Hora fin: </label>
+          </div>
+          <div class="col-md-8">
+            <input name="hora_fin" type = "time" name = "asdad" />
+          </div>
         </div>
-        <div class = "row" style="margin: 5px 0px; text-align: right">
-          <button type="submit" class = "btn btn-primary float-right" style="margin: 5px 0px;"> Pedir </button>
+        <div class = "row">
+          <button type="submit" class = "btn btn-primary float-right"> Pedir </button>
         </div>
 
       </form>
-        <div class = "row reservas" style="padding: 0px 15px; margin-top: 20px">
-          <h3> Historial de reservas</h3>
-            <div style="padding: 10px 0px; overflow: scroll; height: 200px; border-radius: 7px; border: 1px solid darkgrey; width: 100%;">
+        <div class = "row reservation-history-container">
+          <h3 class="block-title"> Historial de reservas</h3>
+            <div class="reservation-history">
                 <ul>
                     {% for elemento in last_loans %}
                         <li>{{ elemento }}</li>
