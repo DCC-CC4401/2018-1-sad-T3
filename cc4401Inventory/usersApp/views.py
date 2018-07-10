@@ -58,6 +58,7 @@ def signup_submit(request):
         else:
             user = User.objects.create_user(first_name=first_name, email=email, password=password, rut = rut)
             login(request, user)
+            messages.success(request, 'Bienvenid@, ' + user.first_name + ' ya puedes comenzar a hacer reservas :)')
             return redirect('/articles/')
 
 
