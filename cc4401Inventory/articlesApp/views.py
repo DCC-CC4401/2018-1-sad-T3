@@ -58,27 +58,30 @@ def article_request(request):
     if request.method == 'POST':
         article = Article.objects.get(id = request.POST['article_id'])
 
-        try:
-            string_inicio = request.POST['fecha_inicio'] + " " + request.POST['hora_inicio']
-            start_date_time = datetime.strptime(string_inicio, '%Y-%m-%d %H:%M')
-            string_fin = request.POST['fecha_fin'] + " " + request.POST['hora_fin']
-            end_date_time = datetime.strptime(string_fin, '%Y-%m-%d %H:%M')
+        if request.user.enabled:
+            try:
+                string_inicio = request.POST['fecha_inicio'] + " " + request.POST['hora_inicio']
+                start_date_time = datetime.strptime(string_inicio, '%Y-%m-%d %H:%M')
+                string_fin = request.POST['fecha_fin'] + " " + request.POST['hora_fin']
+                end_date_time = datetime.strptime(string_fin, '%Y-%m-%d %H:%M')
 
-            if start_date_time > end_date_time:
-                messages.warning(request, 'La reserva debe terminar después de iniciar.')
-            elif start_date_time < datetime.now() + timedelta(hours=1):
-                messages.warning(request, 'Los pedidos deben ser hechos al menos con una hora de anticipación.')
-            elif start_date_time.date() != end_date_time.date():
-                messages.warning(request, 'Los pedidos deben ser devueltos el mismo día que se entregan.')
-            elif not verificar_horario_habil(start_date_time) and not verificar_horario_habil(end_date_time):
-                messages.warning(request, 'Los pedidos deben ser hechos en horario hábil.')
-            else:
-                loan = Loan(article=article, starting_date_time=start_date_time, ending_date_time=end_date_time,
-                            user=request.user)
-                loan.save()
-                messages.success(request, 'Pedido realizado con éxito')
-        except Exception as e:
-            messages.warning(request, 'Ingrese una fecha y hora válida.')
+                if start_date_time > end_date_time:
+                    messages.warning(request, 'La reserva debe terminar después de iniciar.')
+                elif start_date_time < datetime.now() + timedelta(hours=1):
+                    messages.warning(request, 'Los pedidos deben ser hechos al menos con una hora de anticipación.')
+                elif start_date_time.date() != end_date_time.date():
+                    messages.warning(request, 'Los pedidos deben ser devueltos el mismo día que se entregan.')
+                elif not verificar_horario_habil(start_date_time) and not verificar_horario_habil(end_date_time):
+                    messages.warning(request, 'Los pedidos deben ser hechos en horario hábil.')
+                else:
+                    loan = Loan(article=article, starting_date_time=start_date_time, ending_date_time=end_date_time,
+                                user=request.user)
+                    loan.save()
+                    messages.success(request, 'Pedido realizado con éxito')
+            except Exception as e:
+                messages.warning(request, 'Ingrese una fecha y hora válida.')
+        else:
+            messages.warning(request, 'Usuario no habilitado para pedir préstamos')
 
         return redirect('/article/' + str(article.id))
 
