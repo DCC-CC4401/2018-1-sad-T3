@@ -11,6 +11,9 @@ from django.utils.timezone import localtime
 
 @login_required
 def user_panel(request):
+    user = request.user
+    if not (user.is_superuser and user.is_staff):
+        return redirect('/')
     users = User.objects.all()
     context = {
         'users': users
@@ -19,6 +22,9 @@ def user_panel(request):
 
 @login_required
 def items_panel(request):
+    user = request.user
+    if not (user.is_superuser and user.is_staff):
+        return redirect('/')
     articles = Article.objects.all()
     spaces = Space.objects.all()
     context = {
@@ -29,7 +35,9 @@ def items_panel(request):
 
 @login_required
 def actions_panel(request):
-
+    user = request.user
+    if not (user.is_superuser and user.is_staff):
+        return redirect('/')
     try:
         current_week = datetime.strptime(request.GET["date"], "%Y-%m-%d").date().isocalendar()[1]
         current_date = request.GET["date"]
@@ -93,8 +101,11 @@ def actions_panel(request):
     }
     return render(request, 'actions_panel.html', context)
 
-def modify_reservations(request):
 
+def modify_reservations(request):
+    user = request.user
+    if not (user.is_superuser and user.is_staff):
+        return redirect('/')
     if request.method == "POST":
 
         accept = True if (request.POST["accept"] == "1") else False
@@ -109,8 +120,3 @@ def modify_reservations(request):
                 reservation.save()
 
     return redirect('/admin/actions-panel')
-
-
-
-
-
