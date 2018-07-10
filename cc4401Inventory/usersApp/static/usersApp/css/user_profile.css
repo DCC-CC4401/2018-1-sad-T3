@@ -1,0 +1,20 @@
+.nav-link.active {
+    background-color: #79bcb5 !important;
+    border-color: #79bcb5 !important;
+}
+
+.delete-button {
+    background-color: #e54e53;
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #6c9cff;
+    transition-duration: .5s;
+}

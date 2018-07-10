@@ -83,6 +83,6 @@ def user_data(request, user_id):
             'reservations': reservations,
             'loans': loans
         }
-        return render(request, 'user_profile.html', context)
+        return render(request, 'usersApp/user_profile.html', context)
     except Exception:
         return redirect('/')
