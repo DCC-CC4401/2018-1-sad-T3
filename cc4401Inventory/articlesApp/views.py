@@ -76,6 +76,7 @@ def article_request(request):
                 loan = Loan(article=article, starting_date_time=start_date_time, ending_date_time=end_date_time,
                             user=request.user)
                 loan.save()
+                messages.success(request, 'Pedido realizado con éxito')
         except Exception as e:
             messages.warning(request, 'Ingrese una fecha y hora válida.')
 
