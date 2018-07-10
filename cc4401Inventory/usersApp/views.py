@@ -83,5 +83,5 @@ def user_data(request, user_id):
             'loans': loans
         }
         return render(request, 'user_profile.html', context)
-    except:
-        redirect('/')
+    except Exception:
+        return redirect('/')

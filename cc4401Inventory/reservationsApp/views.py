@@ -8,6 +8,6 @@ def delete(request):
         try:
             reservation = Reservation.objects.get(id=reservation_id)
             reservation.delete()
-            return redirect('user_data')
+            return redirect('user_data', user_id=request.user.id)
         except:
-            return redirect('user_data')
+            return redirect('user_data', user_id=request.user.id)

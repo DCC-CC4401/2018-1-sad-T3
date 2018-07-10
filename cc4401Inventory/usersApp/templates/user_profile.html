@@ -142,15 +142,14 @@
                         <div class="col-lg-3">
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                  aria-orientation="vertical">
-                                <form method="post">
-                                    <!-- Descomentar el de abajo cuando esté con lo demás-->
-                                    {# <form method="post" action="{% url 'delete_reservation' %}">#}
+                                <form method="post" action="{% url 'delete_reservation' %}">
                                     {% csrf_token %}
                                     <input type="submit" value="Eliminar Reservas">
                                     <br>
                                     {% for reservation in reservations %}
                                         <!-- Casilla solo en los pendientes -->
                                         {% if reservation.state == 'P' %}
+                                            <input type="hidden" name="reservation_id" value="{{ reservation.id }}">
                                             <input id="reservation-{{ reservation.id }}" class="form-check-input"
                                                    type="checkbox">
                                         {% endif %}
@@ -204,21 +203,24 @@
                                         <div class="timeline">
                                             <div class="container_timeline right">
                                                 <div class="content">
-                                                    <p><strong>{{ reservation.starting_date_time }}</strong> Solicitud en proceso
+                                                    <p><strong>{{ reservation.starting_date_time }}</strong> Solicitud
+                                                        en proceso
                                                     </p>
                                                 </div>
                                             </div>
 
                                             <div class="container_timeline right">
                                                 <div class="content">
-                                                    <p><strong>{{ reservation.starting_date_time }}</strong> Solicitud en Enviado
+                                                    <p><strong>{{ reservation.starting_date_time }}</strong> Solicitud
+                                                        en Enviado
                                                     </p>
                                                 </div>
                                             </div>
 
                                             <div class="container_timeline right">
                                                 <div class="content">
-                                                    <p><strong>{{ reservation.starting_date_time }}</strong> Solicitud enviada</p>
+                                                    <p><strong>{{ reservation.starting_date_time }}</strong> Solicitud
+                                                        enviada</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -309,21 +311,24 @@
                                             <div class="timeline">
                                                 <div class="container_timeline right">
                                                     <div class="content">
-                                                        <p><strong>{{ loan.starting_date_time }}</strong> Solicitud en proceso
+                                                        <p><strong>{{ loan.starting_date_time }}</strong> Solicitud en
+                                                            proceso
                                                         </p>
                                                     </div>
                                                 </div>
 
                                                 <div class="container_timeline right">
                                                     <div class="content">
-                                                        <p><strong>{{ loan.starting_date_time }}</strong> Solicitud en Enviado
+                                                        <p><strong>{{ loan.starting_date_time }}</strong> Solicitud en
+                                                            Enviado
                                                         </p>
                                                     </div>
                                                 </div>
 
                                                 <div class="container_timeline right">
                                                     <div class="content">
-                                                        <p><strong>{{ loan.starting_date_time }}</strong> Solicitud enviada</p>
+                                                        <p><strong>{{ loan.starting_date_time }}</strong> Solicitud
+                                                            enviada</p>
                                                     </div>
                                                 </div>
                                             </div>
