@@ -78,8 +78,6 @@ def article_request(request):
                 loan.save()
         except Exception as e:
             messages.warning(request, 'Ingrese una fecha y hora válida.')
-            messages.warning(request, e)
-
 
         return redirect('/article/' + str(article.id))
 
