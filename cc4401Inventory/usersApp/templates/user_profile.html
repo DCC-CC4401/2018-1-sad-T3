@@ -191,33 +191,34 @@
                                         {% if reservation.space.image %}
                                             <img src=" {% static reservation.space.image.url %}" class="img-fluid"
                                                  alt="Foto"
-                                                 style="height: 400px"/>
+                                                 style="height: 900px"/>
                                         {% else %}
-                                            <img class="card-img-top"
+                                            <img class="card-img-top img-fluid"
                                                  src="{% static 'img/items/default_article.jpg' %}"
                                                  alt="Card image cap">
                                         {% endif %}
+
 
                                         <p>{{ reservation.space.description }}</p>
 
                                         <div class="timeline">
                                             <div class="container_timeline right">
                                                 <div class="content">
-                                                    <p><strong>23/04/2018 12:34</strong> Solicitud en proceso
+                                                    <p><strong>{{ reservation.starting_date_time }}</strong> Solicitud en proceso
                                                     </p>
                                                 </div>
                                             </div>
 
                                             <div class="container_timeline right">
                                                 <div class="content">
-                                                    <p><strong>23/04/2018 12:34</strong> Solicitud en Enviado
+                                                    <p><strong>{{ reservation.starting_date_time }}</strong> Solicitud en Enviado
                                                     </p>
                                                 </div>
                                             </div>
 
                                             <div class="container_timeline right">
                                                 <div class="content">
-                                                    <p><strong>23/04/2018 12:34</strong> Solicitud enviada</p>
+                                                    <p><strong>{{ reservation.starting_date_time }}</strong> Solicitud enviada</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -296,9 +297,9 @@
                                             {% if loan.article.image %}
                                                 <img src=" {% static loan.article.image.url %}" class="img-fluid"
                                                      alt="Foto"
-                                                     style="height: 400px"/>
+                                                     style="height: 900px"/>
                                             {% else %}
-                                                <img class="card-img-top"
+                                                <img class="card-img-top img-fluid"
                                                      src="{% static 'img/items/default_article.jpg' %}"
                                                      alt="Card image cap">
                                             {% endif %}
@@ -308,21 +309,21 @@
                                             <div class="timeline">
                                                 <div class="container_timeline right">
                                                     <div class="content">
-                                                        <p><strong>23/04/2018 12:34</strong> Solicitud en proceso
+                                                        <p><strong>{{ loan.starting_date_time }}</strong> Solicitud en proceso
                                                         </p>
                                                     </div>
                                                 </div>
 
                                                 <div class="container_timeline right">
                                                     <div class="content">
-                                                        <p><strong>23/04/2018 12:34</strong> Solicitud en Enviado
+                                                        <p><strong>{{ loan.starting_date_time }}</strong> Solicitud en Enviado
                                                         </p>
                                                     </div>
                                                 </div>
 
                                                 <div class="container_timeline right">
                                                     <div class="content">
-                                                        <p><strong>23/04/2018 12:34</strong> Solicitud enviada</p>
+                                                        <p><strong>{{ loan.starting_date_time }}</strong> Solicitud enviada</p>
                                                     </div>
                                                 </div>
                                             </div>
