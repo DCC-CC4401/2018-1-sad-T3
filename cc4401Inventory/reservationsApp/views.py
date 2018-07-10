@@ -5,12 +5,13 @@ from django.contrib import messages
 
 def delete(request):
     if request.method == 'POST':
-        reservation_id = request.POST['reservation_id']
+        reservation_ids = request.POST.getlist('reservation')
         try:
-            messages.success(request, 'Reserva eliminada con éxito')
-            reservation = Reservation.objects.get(id=reservation_id)
-            reservation.delete()
-            return redirect('user_data', user_id=request.user.id)
+            for reservation_id in reservation_ids:
+                reservation = Reservation.objects.get(id=reservation_id)
+                if reservation.state == 'P':
+                    reservation.delete()
         except:
             messages.warning(request, 'Ha ocurrido un error y la reserva no se ha eliminado')
-            return redirect('user_data', user_id=request.user.id)
+
+        return redirect('user_data', user_id=request.user.id)

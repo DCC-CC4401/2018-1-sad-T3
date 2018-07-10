@@ -145,14 +145,14 @@
                                     {% for reservation in reservations %}
                                         <!-- Casilla solo en los pendientes -->
                                         {% if reservation.state == 'P' %}
-                                            <input type="hidden" name="reservation_id" value="{{ reservation.id }}">
-                                            <input id="reservation-{{ reservation.id }}" class="form-check-input"
-                                                   type="checkbox">
+                                            <input id="reservation-{{ reservation.id }}" name="reservation" class="form-check-input"
+                                                   type="checkbox" value="{{ reservation.id }}">
                                         {% endif %}
                                         <label for="reservation-{{ reservation.id }}">
                                             {{ reservation.space.name }} <span
                                                 class="badge badge-pill badge-light">{{ reservation.get_state_display }}</span>
                                         </label>
+                                      <br>
                                     {% endfor %}
                                 </form>
                             </div>
