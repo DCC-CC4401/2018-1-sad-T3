@@ -245,96 +245,91 @@
 
                             <div class="row">
 
-                            <!-- Checkbox, Nombre, Estado-->
-                            <div class="col-lg-3">
-                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-                                     aria-orientation="vertical">
+                                <!-- Nombre, Estado-->
+                                <div class="col-lg-3">
+                                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                         aria-orientation="vertical">
 
-                                    {% for loan in loans %}
+                                        {% for loan in loans %}
 
-                                        <!-- Tener seleccionado la primera casilla por default-->
-                                        {% if forloop.counter0 == 0 %}
-                                            <a class="nav-link active d-flex justify-content-between align-items-center"
+                                            <!-- Tener seleccionado la primera casilla por default-->
+
+                                            <a class="nav-link {% if forloop.counter0 == 0 %} active {% endif %}
+                                         d-flex justify-content-between align-items-center"
                                                id="v-pills-{{ loan.pk }}-tab" data-toggle="pill"
                                                href="#v-pills-{{ loan.pk }}"
                                                role="tab" aria-controls="v-pills-{{ loan.pk }}" aria-selected="false">
-                                        {% else %}
-                                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                               id="v-pills-{{ loan.pk }}-tab" data-toggle="pill"
-                                               href="#v-pills-{{ loan.pk }}"
-                                               role="tab" aria-controls="v-pills-{{ loan.pk }}" aria-selected="false">
-                                        {% endif %}
-
-                                    {{ loan.article.name }} <span
-                                            class="badge badge-pill badge-light">{{ loan.get_state_display }}</span></a>
-                                    {% endfor %}
+                                                {{ loan.article.name }} <span
+                                                    class="badge badge-pill badge-light">{{ loan.get_state_display }}</span></a>
+                                        {% endfor %}
+                                    </div>
                                 </div>
-                            </div>
 
-                            <!-- Contenido de cada objeto y/o espacio del resumen de reservas-->
-                            <div class="col-lg-9">
-                                <div class="card mt-4">
-                                    <div class="card-body">
-                                        <div class="tab-content" id="v-pills-tabContent">
+                                <!-- Contenido de cada objeto y/o espacio del resumen de reservas-->
+                                <div class="col-lg-9">
+                                    <div class="card mt-4">
+                                        <div class="card-body">
+                                            <div class="tab-content" id="v-pills-tabContent">
 
-                                            {% for loan in loans %}
+                                                {% for loan in loans %}
 
-                                                {% if forloop.counter0 == 0 %}
-                                                    <div class="tab-pane fade show active" id="v-pills-{{ loan.pk }}"
+                                                    <div class="tab-pane fade show {% if forloop.counter0 == 0 %}
+                                                    active {% endif %}"
+                                                         id="v-pills-{{ loan.pk }}"
                                                          role="tabpanel"
                                                          aria-labelledby="v-pills-{{ loan.pk }}-tab">
-                                                {% else %}
-                                                    <div class="tab-pane fade" id="v-pills-{{ loan.pk }}"
-                                                         role="tabpanel"
-                                                         aria-labelledby="v-pills-{{ loan.pk }}-tab">
-                                                {% endif %}
 
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h2 class="mb-1">{{ loan.article.name }}</h2>
-                                                <medium><strong>{{ loan.starting_date_time }}</strong></medium>
-                                            </div>
-                                            <medium class="text-muted">{{ loan.get_state_display }}</medium>
+                                                        <div class="d-flex w-100 justify-content-between">
+                                                            <h2 class="mb-1">{{ loan.article.name }}</h2>
+                                                            <medium><strong>{{ loan.starting_date_time }}</strong>
+                                                            </medium>
+                                                        </div>
+                                                        <medium class="text-muted">{{ loan.get_state_display }}</medium>
 
-                                            <!-- Imagen de los préstamos-->
-                                            {% if loan.article.image %}
-                                                <img src=" {% static loan.article.image.url %}" class="img-fluid"
-                                                     alt="Foto"
-                                                     style="height: 900px"/>
-                                            {% else %}
-                                                <img class="card-img-top img-fluid"
-                                                     src="{% static 'img/items/default_article.jpg' %}"
-                                                     alt="Card image cap">
-                                            {% endif %}
+                                                        <!-- Imagen de los préstamos-->
+                                                        {% if loan.article.image %}
+                                                            <img src=" {% static loan.article.image.url %}"
+                                                                 class="img-fluid"
+                                                                 alt="Foto"
+                                                                 style="height: 900px"/>
+                                                        {% else %}
+                                                            <img class="card-img-top img-fluid"
+                                                                 src="{% static 'img/items/default_article.jpg' %}"
+                                                                 alt="Card image cap">
+                                                        {% endif %}
 
-                                            <p>{{ loan.article.description }}</p>
+                                                        <p>{{ loan.article.description }}</p>
 
-                                            <div class="timeline">
-                                                <div class="container_timeline right">
-                                                    <div class="content">
-                                                        <p><strong>{{ loan.starting_date_time }}</strong> Solicitud en
-                                                            proceso
-                                                        </p>
+                                                        <div class="timeline">
+                                                            <div class="container_timeline right">
+                                                                <div class="content">
+                                                                    <p><strong>{{ loan.starting_date_time }}</strong>
+                                                                        Solicitud en
+                                                                        proceso
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="container_timeline right">
+                                                                <div class="content">
+                                                                    <p><strong>{{ loan.starting_date_time }}</strong>
+                                                                        Solicitud en
+                                                                        Enviado
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="container_timeline right">
+                                                                <div class="content">
+                                                                    <p><strong>{{ loan.starting_date_time }}</strong>
+                                                                        Solicitud
+                                                                        enviada</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
-                                                </div>
-
-                                                <div class="container_timeline right">
-                                                    <div class="content">
-                                                        <p><strong>{{ loan.starting_date_time }}</strong> Solicitud en
-                                                            Enviado
-                                                        </p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="container_timeline right">
-                                                    <div class="content">
-                                                        <p><strong>{{ loan.starting_date_time }}</strong> Solicitud
-                                                            enviada</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            </div>
-                                            {% endfor %}
+                                                {% endfor %}
 
                                             </div>
                                         </div>
@@ -346,12 +341,12 @@
                         {% else %}
                             <p>No se han realizado préstamos</p>
                         {% endif %}
-                        </div>
                     </div>
                 </div>
-
             </div>
 
         </div>
+
+    </div>
     </div>
 {% endblock %}
