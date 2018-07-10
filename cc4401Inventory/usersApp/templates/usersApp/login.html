@@ -10,6 +10,7 @@
 <body>
 
     <div class="container">
+
       <div class="row ">
         <div class = "col-md-4 offset-md-4">
           <form action="{% url 'login_submit' %}" method="post"> {% csrf_token %}
@@ -30,7 +31,16 @@
           <button type="submit" class="btn btn-primary">Login</button>
           <a href="{% url 'signup' %}"style="float: right">¿No tienes cuenta? Crea una.</a>
          </form>
-          {% if error_message %} <label style="color: #ff272c;"> {{error_message}}</label> {% endif %}
+
+          <div class = message>
+            {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+              <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
 
         </div>
         </div>

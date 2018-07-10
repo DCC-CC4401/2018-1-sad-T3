@@ -41,7 +41,17 @@
             <button type="submit" class="btn btn-primary">Crear cuenta</button>
             <a href="{% url 'login' %}" style="float: right;">Volver</a>
          </form>
-          {% if error_message %} <label style="color: #ff272c;"> {{error_message}}</label> {% endif %}
+
+          <div class = message>
+            {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+              <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+
         </div>
 
         </div>
