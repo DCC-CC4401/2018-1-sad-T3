@@ -4,6 +4,10 @@ from django.contrib.auth import authenticate, login, logout
 from mainApp.models import User
 from django.contrib import messages
 
+from reservationsApp.models import Reservation
+
+from loansApp.models import Loan
+
 
 def login_view(request):
     context = {}
@@ -72,8 +76,13 @@ def logout_view(request):
 def user_data(request, user_id):
     try:
         user = User.objects.get(id=user_id)
-        if user != request.user:
-            redirect('/')
-        return render(request, 'user_profile.html')
-    except:
-        redirect('/')
+        reservations = Reservation.objects.filter(user = user_id).order_by('-starting_date_time')[:10]
+        loans = Loan.objects.filter(user = user_id).order_by('-starting_date_time')[:10]
+        context = {
+            'user': user,
+            'reservations': reservations,
+            'loans': loans
+        }
+        return render(request, 'user_profile.html', context)
+    except Exception:
+        return redirect('/')
