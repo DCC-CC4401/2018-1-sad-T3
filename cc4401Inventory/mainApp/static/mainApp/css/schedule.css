@@ -232,6 +232,7 @@ Main Components
     width: 20%;
     float: left;
     border: 1px solid #bc745f;
+    border-radius: 10px;
     /* reset style */
     margin-bottom: 0;
   }
@@ -653,7 +654,6 @@ Main Components
 .cd-schedule .week-select {
     bottom:0;
     position: absolute;
-    border: 1px solid #bc745f;
     border-top: 0px;
     height: 20px;
     width: 100%;
