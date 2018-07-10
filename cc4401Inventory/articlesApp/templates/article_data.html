@@ -10,6 +10,16 @@
 
 {% block body %}
 <div class = "container">
+  <div class = message>
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+
   <div class="row">
     <div class="col-md-4 offset-1">
 
@@ -46,6 +56,7 @@
       <form action="{% url  'article_request' %}" method="post" class="reservation-form">
         {% csrf_token%}
         <input type="hidden" name="article_id" value="{{ article.id }}">
+
         <div class = "row">
           <div class="col-md-4">
             <label>Fecha inicio: </label>
@@ -82,8 +93,8 @@
         <div class = "row">
           <button type="submit" class = "btn btn-primary float-right"> Pedir </button>
         </div>
-
       </form>
+
         <div class = "row reservation-history-container">
           <h3 class="block-title"> Historial de reservas</h3>
             <div class="reservation-history">

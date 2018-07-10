@@ -2,9 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from articlesApp.models import Article
 from loansApp.models import Loan
-from datetime import datetime
+from django.db import models
+from datetime import datetime, timedelta
+
 import random, os
 import pytz
+from django.contrib import messages
+
 
 
 @login_required
@@ -40,9 +44,43 @@ def article_data(request, article_id):
         print(e)
         return redirect('/')
 
+def verificar_horario_habil(horario):
+    if horario.isocalendar()[2] > 5:
+        return False
+    if horario.hour < 9 or horario.hour > 18:
+        return False
+
+    return True
+
+
 @login_required
 def article_request(request):
-    return render(request, 'article_data.html')
+    if request.method == 'POST':
+        article = Article.objects.get(id = request.POST['article_id'])
+
+        try:
+            string_inicio = request.POST['fecha_inicio'] + " " + request.POST['hora_inicio']
+            start_date_time = datetime.strptime(string_inicio, '%Y-%m-%d %H:%M')
+            string_fin = request.POST['fecha_fin'] + " " + request.POST['hora_fin']
+            end_date_time = datetime.strptime(string_fin, '%Y-%m-%d %H:%M')
+
+            if start_date_time > end_date_time:
+                messages.warning(request, 'La reserva debe terminar después de iniciar.')
+            elif start_date_time < datetime.now() + timedelta(hours=1):
+                messages.warning(request, 'Los pedidos deben ser hechos al menos con una hora de anticipación.')
+            elif start_date_time.date() != end_date_time.date():
+                messages.warning(request, 'Los pedidos deben ser devueltos el mismo día que se entregan.')
+            elif not verificar_horario_habil(start_date_time) and not verificar_horario_habil(end_date_time):
+                messages.warning(request, 'Los pedidos deben ser hechos en horario hábil.')
+            else:
+                loan = Loan(article=article, starting_date_time=start_date_time, ending_date_time=end_date_time,
+                            user=request.user)
+                loan.save()
+                messages.success(request, 'Pedido realizado con éxito')
+        except Exception as e:
+            messages.warning(request, 'Ingrese una fecha y hora válida.')
+
+        return redirect('/article/' + str(article.id))
 
 
 @login_required
