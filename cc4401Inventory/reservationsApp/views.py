@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Reservation
+from django.contrib import messages
 
 
 def delete(request):
