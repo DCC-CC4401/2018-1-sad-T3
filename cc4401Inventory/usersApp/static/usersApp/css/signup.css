@@ -1,0 +1,23 @@
+body {
+    background-image: url('/static/usersApp/img/steve_jobs_background.png');
+    background-size: 100%;
+}
+
+.signup-logo {
+    display: block;
+    margin: 10px auto;
+}
+
+.form-container {
+    padding: 20px;
+    margin-top: 15px;
+    background-color: rgba(217, 219, 219, 0.4);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.form-container label.field-label {
+    font-weight: 600;
+    color: #6c9cff;
+}
